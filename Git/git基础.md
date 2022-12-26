@@ -40,7 +40,6 @@ git config --list
 - ​		git merge：合并分支
 - ​		git tag：新建、查看标签
 - ​		git clone：下载仓库
-- 
 
 
 ## 上传操作
@@ -57,3 +56,4 @@ git commit -m "first commit" // 提交到仓库，并写一些注释
 git remote add origin https://github.com/zhangbx0128/paryblog.git //修改下地址
 
 git push -u origin master // 将本地仓库的东西提交到origin的地址，master分支下
+

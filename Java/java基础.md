@@ -562,3 +562,200 @@ import java.util.Scanner
 > & ==两边都要满足==
 >
 > | ==两边满足一个==
+
+#### 短路逻辑运算符
+
+> 例子-登陆:
+>
+> &会判断两次,判断用户名是否正确和判断密码是否正确,如果用户名错误依然还会继续判断密码
+>
+> &&与上面区别:如果用户名判断错误,不会继续判断密码
+>
+> 例子-相亲(成功需要有房子或者车子)
+>
+> | 如果有房子,还会继续去判断是否有车子
+>
+> || 如果有房子,不需要继续去看车子
+
+| 符号 | 作用   | 说明                        |
+| ---- | ------ | --------------------------- |
+| &&   | 短路与 | 结果和&相同,但是短路效果    |
+| \|\| | 短路或 | 结果和\|相同,但是有短路效果 |
+|      |        |                             |
+
+> |,&  无论左边true,false,右边都要执行.
+>
+> ||,&&  如果==左边能确定整个表达式的结果==,==右边不执行==
+
+##### &&
+
+左边为false,右边不管是真还是假,整个表达式的结果一定是false
+
+##### ||
+
+左边为true,右边不管是真还是假,整个表达式的结果一定是true
+
+```java
+import java.util.Scanner
+  public class test{
+    public static void main(String[] args){
+      /*键盘录入两个整数
+        如果其中一个数是6,最终结果输出为true
+        如果两个数相加是6的倍数,最终输出结果为true*/
+      
+      //1.键盘录入两个整数
+      Scanner sc = new Scanner(System.in);
+      System.out.println("请输入第一个整数");
+      int number1 = sc.nextInt();
+      System.out.println("请输入第二个整数");
+      int number2 = sc.nextInt();
+      
+      //2.number1==6 || number2==6||(number1+number2)%==0满足其中一个输出为true
+      boolean result = number1==6 || number2==6 ||(number1+number2)%==0;
+      System.out.println(result);
+    }
+  }
+```
+
+### 三元运算符
+
+#### 格式
+
+==关系表达式 ? 表达式1:表达式2==
+
+> 关系表达式成立则运行表达式1,否则运行表达式2
+
+```java
+import java.util.Scanner
+  public class maxDemo{
+    public static void main(String[] args){
+      //键盘录入两个整数,获取最大值
+      //判断两个整数是否相同,相同输出字符串相同
+      
+      //1.键盘录入两个整数
+      Scanner sc = new Scanner(System.in);
+      System.out.println("请输入第一个整数");
+      int number1 = sc.nextInt();
+      System.out.println("请输入第二个整数");
+      int number2 = sc.nextInt();
+      
+      //2.使用三元表达式获取最大值
+      //关系表达式 ? 表达式1:表达式2
+      //整个三元表达式的结果必须被使用
+      int max = number1>number2 ? number1:number2;
+      System.out.println(max);
+      
+      //3.判断是否相同
+      String result = number1==number2 ? "相同":"不同";
+      System.out.println(result);
+    }
+  }
+```
+
+## 流程控制语句
+
+### 顺序结构
+
+数序结构语句是java程序默认的执行流程,按照代码的先后顺序,从上到下依次执行
+
+### 分支结构
+
+#### if语句
+
+##### 第一种格式:
+
+```java
+if (关系表达式) {
+  语句体;
+}
+```
+
+> 如果对一个布尔类型的变量进行判断,不要用==号,直接把变量名写在小括号即可
+
+##### 第二种格式:
+
+```java
+if (关系表达式) {
+  语句体1;
+} else {
+  语句体2;
+}
+```
+
+##### 第三种格式
+
+```java
+if (关系表达式1) {
+  语句体1;
+} else if (关系表达式2) {
+  语句体2;
+} else if (关系表达式3) {
+  语句体3;
+}
+.....
+ 	else {
+    语句体n+1;
+  }
+```
+
+####  switch语句
+
+```java
+switch(表达式){
+  case 值1:
+    语句体1;
+    break;
+  case 值2:
+    语句体2;
+    break;
+    ...
+  default:
+    语句体n+1;
+    break;
+    
+}
+```
+
+> ==执行流程:==
+>
+> 1. 首先计算表达式的==值==
+> 2. 依次和case后面的值进行比较,如果有对应的值,就会执行相应的语句,在执行的过程中,遇到break就会结束.
+> 3. 如果没有发现break,那么程序就会继续执行下一个case语句体,一直遇到break或者打括号为止.
+> 4. 如果所有的case后面的值和表达式的值都不匹配,就会执行default里面的语句体,然后结束整个switch语句.
+
+> ==注意⚠️==
+>
+> 1. case后面的值只能是==字面量==,不能是变量
+> 2. case给出的值不允许重复
+> 3. case:后面跟的是要和表达式进行比较的值(被匹配的值,取值为byte,short,int,char,枚举,String)
+
+```java
+public class switchDemo{
+   public static void main(String[] args){
+      //兰州拉面、武汉热干面、北京炸酱面、陕西油泼面
+     //1.定义变量,记录想要吃的面条
+     String noodle = "兰州拉面";
+     
+     //2.将上面记录的变量利用switch语句进行匹配
+     switch(noodle){
+       case "兰州拉面":
+         System.out.println("吃兰州拉面");
+         break;
+       case "武汉热干面":
+         System.out.println("吃武汉热干面");
+         break;
+       case "北京炸酱面":
+         System.out.println("吃北京炸酱面");
+         break;
+       case "陕西油泼面":
+         System.out.println("吃陕西油泼面");
+         break;
+       default:
+         System.out.println("吃泡面");
+         break;
+     }
+      
+   }
+}
+```
+
