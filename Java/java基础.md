@@ -60,7 +60,7 @@ public class ValueDemo1 {
       	System.out.println(1.3);
       	System.out.println(-1.4);
       //字符串
-      	System.out.println("尘世烟雨客")
+      	System.out.println("尘世烟雨客");
       //字符
         System.out.println('男');
       //布尔
@@ -610,8 +610,8 @@ import java.util.Scanner
       System.out.println("请输入第二个整数");
       int number2 = sc.nextInt();
       
-      //2.number1==6 || number2==6||(number1+number2)%==0满足其中一个输出为true
-      boolean result = number1==6 || number2==6 ||(number1+number2)%==0;
+      //2.number1==6 || number2==6||(number1+number2)%6==0满足其中一个输出为true
+      boolean result = number1==6 || number2==6 ||(number1+number2)%6==0;
       System.out.println(result);
     }
   }
@@ -759,6 +759,10 @@ public class switchDemo{
 }
 ```
 
+
+
+##### 新格式
+
 ```java
 public class numberDemo{
   public static void main(String[] args){
@@ -781,3 +785,316 @@ public class numberDemo{
 }
 ```
 
+==case语句后面的打括号里如果只有一条语句,打括号可以删除==
+
+##### case穿透
+
+```java
+import java.util.Scanner
+public class numberDemo{
+  public static void main(String[] args){
+    /*键盘录入星期数,输出工作日、休息日
+      (1-5)工作日,(6-7)休息日*/
+    //1.键盘录入星期数
+    Scanner sc = new Scanner(System.in);
+    System.out.println("请录入一个整数表示星期:");
+    int week = sc.nextInt();
+    //2.利用switch语句表示选择
+    switch(week){
+      case 1,2,3,4,5 -> System.out.println("工作日");
+      case 6,7 -> System.out.println("休息日");
+      default -> System.out.println("没有这个星期");
+    }
+    
+  }
+}
+```
+
+### 循环结构
+
+#### for循环
+
+```java
+for (初始化语句;条件判断语句;条件控制语句){
+  循环体语句;
+}
+```
+
+> ==执行流程:==
+>
+> 1. 执行初始化语句
+> 2. 执行条件判断语句,看其结果是true还是false. 如果是false,循环结束.如果是true,执行循环体语句.
+> 3. 执行条件控制语句
+> 4. 回到 2 继续执行条件判断语句
+
+> 注意⚠️
+>
+> 1. 初始化语句只执行一次
+> 2. 判断语句为true,循环继续
+> 3. 判断语句为false.循环结束
+
+```java
+public class forDemo {
+    public static void main(String[] args) {
+        for (int i = 1;i <= 10;i++) {
+        //打印10次hello world
+            System.out.println("hello world");
+        }
+    }
+}
+
+```
+
+##### 练习
+
+```java
+public class forDemo {
+    public static void main(String[] args) {
+        /*for (初始化语句;条件判断语句;条件控制语句){
+                循环体语句;
+          }*/
+        //打印输出1-5
+        for (int i = 1;i <= 5;i++) {
+            System.out.println(i);
+        }
+        System.out.println("---------------");
+        //打印输出5-1
+        for (int x = 5;x >= 1;x--){
+            System.out.println(x);
+        }
+    }
+}
+```
+
+##### 累加
+
+```java
+public class addDemo {
+    public static void main(String[] args) {
+        //求1-5的和
+
+        //分析
+        //1.循环1-5里面的每一个数字
+        //开始条件:1
+        //结束条件:5
+        int sum = 0; //用来进行累加
+        for (int i = 1;i <= 5;i++){
+            System.out.println(i);
+            sum += i;
+        }
+        //打印累加结果
+        System.out.println(sum);
+    }
+}
+```
+
+```java
+public class addDemo2 {
+    public static void main(String[] args) {
+      //求1-100之间的偶数和
+      //定义结果变量
+      int sum = 0;
+      //1.获取1-100之间的每个数
+      for (int i = 1;i <= 100;i++){
+        //2.累加求和(先判断,在求和)
+        if (i % 2 ==0){
+          sum += i;
+        }
+      }
+      System.out.println(sum)
+        
+    }
+}
+```
+
+```java
+import java.util.Scanner;
+
+public class test8 {
+    public static void main(String[] args) {
+        /*键盘录入两个整数，表示一个范围
+        * 统计这个范围里既能被3整除，又能被5整除的数字有多少？*/
+
+        //1.键盘录入两个整数
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入一个数字表示范围的开始");
+        int start = sc.nextInt();
+        System.out.println("请输入一个数字表示范围的结束");
+        int end = sc.nextInt();
+        //定义一个变量记录个数
+        int count = 0;
+        //2.利用循环获取范围里的每一个整数
+        //开始是start
+        //结束是end
+        for (int i = start;i <=end;i++){
+            //3.对每个数字进行判断
+            if (i % 3 ==0 && i % 5 ==0){
+                count++;
+            }
+        }
+        //打印输出结果
+        System.out.println("既能被3整除，又能被5整除的数字有"+count+'个');
+    }
+}
+
+```
+
+#### while循环
+
+##### 格式
+
+```java
+初始化语句;
+while(条件判断语句){
+  循环体语句;
+  条件控制语句;
+}
+```
+
+```java
+public class whileDemo1 {
+    public static void main(String[] args) {
+        //利用while循环打印1-100
+        /*
+        * 初始化语句;
+          while(条件判断语句){
+              循环体语句;
+              条件控制语句;
+        * }
+        * */
+        //开始条件1
+        //结束条件100
+        int i = 1;
+        while (i <= 100){
+            System.out.println(i);
+            i++;
+        }
+    }
+}
+```
+
+#### for循环和while循环的对比
+
+>相同点:运行规则一样
+>
+>不同点:
+>
+>for循环中,控制循环的变量,因为归属for循环的语法结构中,在for循环结束后,就不能再次被访问到
+>
+>while循环中,控制循环的变量,对于while循环来说不归属其语法结构中,在while循环结束后,该变量还可以继续使用
+>
+>==习惯区别==
+>
+>for循环中: 知道==循环次数或者循环的范围==
+>
+>while循环中; 不知道循环次数和范围,只知道==循环的结束条件==.
+
+```java
+public class whileDemo2 {
+    public static void main(String[] args) {
+        //珠穆朗玛峰（8844.43米=8844430毫米),假如有一张足够大的纸，它的厚度是0.1毫米，需要折叠多少次可以达到珠穆朗玛峰的高度
+        //定义一个变量记录次数
+        int count = 0;
+        //记录开始厚度
+        double i = 0.1;
+        //记录山峰高度
+        double heigth = 8844430;
+        while (i <= heigth){
+            count++;
+            //折叠纸张
+            i *= 2;
+            System.out.println(i);
+        }
+        System.out.println("折叠次数："+count);
+    }
+}
+```
+
+### 回文数练习
+
+```java
+import java.util.Scanner;
+
+public class Test9 {
+    public static void main(String[] args) {
+        /*给一个整数x，如果x是一个回文数，打印true，否则，返回false
+        * 回文数：121
+        * 不是回文数：123
+        * 回文数是指从正序和倒序读都是一样的整数*/
+
+        //思路：将数字倒过来跟原来的数字进行比较
+        //键盘输入一个整数
+        Scanner  sc = new Scanner(System.in);
+        //1.输入需要判断的整数
+        System.out.println("请输入需要判断的整数:");
+        int number = sc.nextInt();
+        //定义一个临时变量进行记录最初的值，用于最后的比较
+        int temp = number;
+        //定义结果变量
+        int result = 0;
+        //利用while循环进行判断
+        while (number != 0){
+            //2.从右往左依次获取每一位数字
+            int ge = number % 10; //取余
+            //修改输入的值
+            number = number / 10; //整数参与计算,结果只能得到整数
+            //将当前获取的数字进行拼接
+            result = result *10 + ge;
+        }
+        //3.打印结果
+        System.out.println(temp == result);
+    }
+}
+```
+
+### 求商和余数
+
+```java
+public class Test10 {
+    public static void main(String[] args) {
+        /*给定两个整数，被除数和除数（都是正数，不超过int范围）
+        * 将两数相除，要求不使用乘法、除法和%运算符
+        * 得到商和余数*/
+        //分析：被除数/除数=商。。。。余数
+        /*
+        * int a=100;
+        * int b=10;
+        * 100-10=90
+        * 90-10=80
+        * ......
+        * 10-10=0(余数)*/
+
+        //1.定义被除数变量
+        int a = 100;
+        //2.定义除数变量
+        int b = 14;
+        //3.定义商变量，记录减的次数
+        int count = 0;
+        //利用while循环获取商和余数
+        //只要被除数大于或等于除数，循环一直进行
+        while (a >= b){
+            a = a-b;
+            count++;
+        }
+        System.out.println("商:"+count+"\n"+"余数:"+a);
+    }
+}
+```
+
+### do...while循环
+
+#### 格式
+
+```java
+初始化语句;
+do{
+  循环体语句;
+  条件控制语句;
+}while(条件判断语句);
+```
+
+> 先执行后判断
+
+> ==运行流程==
+>
+> 初始化语句 -> 循环体语句 -> 条件控制语句 -> 条件判断语句(ture -> 循环体语句)
