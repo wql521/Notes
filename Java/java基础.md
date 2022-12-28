@@ -529,7 +529,7 @@ System.out.println(b);//11
 #### 练习
 
 ```java
-import java.util.Scanner
+import java.util.Scanner;
   public class test{
     public static void main(String[] args){
       /*键盘输入两个整数
@@ -596,7 +596,7 @@ import java.util.Scanner
 左边为true,右边不管是真还是假,整个表达式的结果一定是true
 
 ```java
-import java.util.Scanner
+import java.util.Scanner;
   public class test{
     public static void main(String[] args){
       /*键盘录入两个整数
@@ -626,7 +626,7 @@ import java.util.Scanner
 > 关系表达式成立则运行表达式1,否则运行表达式2
 
 ```java
-import java.util.Scanner
+import java.util.Scanner;
   public class maxDemo{
     public static void main(String[] args){
       //键盘录入两个整数,获取最大值
@@ -1010,6 +1010,24 @@ public class whileDemo2 {
 }
 ```
 
+#### do...while循环
+
+#### 格式
+
+```java
+初始化语句;
+do{
+  循环体语句;
+  条件控制语句;
+}while(条件判断语句);
+```
+
+> 先执行后判断
+
+> ==运行流程==
+>
+> 初始化语句 -> 循环体语句 -> 条件控制语句 -> 条件判断语句(ture -> 循环体语句)
+
 ### 回文数练习
 
 ```java
@@ -1081,20 +1099,555 @@ public class Test10 {
 }
 ```
 
-### do...while循环
+### 高级循环
+
+#### 无限循环
+
+```java
+for(;;){
+  System.out.println("学习");
+}
+```
+
+```java
+while(true){
+  System.out.println("学习");
+}
+```
+
+```java
+do{
+  System.out.println("学习");
+}while(true);
+```
+
+#### 跳转控制语句
+
+##### continue
+
+结束本次循环，继续下次循环
+
+```java
+public class continueDemo {
+    public static void main(String[] args) {
+        //1.跳过某次循环
+        for (int i = 1;i <= 5;i++){
+            if (i == 3){
+                //结束本次循环，继续下次循环
+                continue;
+            }
+            System.out.println("吃第"+i+"个包子");
+        }
+    }
+}
+```
+
+##### break
+
+结束整个循环
+
+```java
+public class breakDemo {
+    public static void main(String[] args) {
+        //1.结束整个循环
+        for (int i = 1;i <= 5;i++){
+            System.out.println("吃第"+i+"个包子");
+            if (i == 3){
+                //结束整个循环
+                break;
+            }
+        }
+    }
+}
+```
+
+### 逢7过
+
+```java
+public class Game1 {
+    public static void main(String[] args) {
+        //游戏：逢7过
+        /*游戏规则：从任意一个数字开始报数，当你要报的数字是包含7或7的倍数时都要说过
+        * 需求：使用程序在控制台打印1-100之间满足逢7过规则的数据*/
+        //1.得到1-100之间的每一个数字
+        for (int i = 1;i <= 100;i++){
+            if (i % 10 ==7 || i /10 %10 ==7 || i % 7==0){
+                System.out.println('过');
+                continue;
+            }
+            System.out.println(i);
+        }
+
+    }
+}
+```
+
+### 求平方根
+
+```java
+import java.util.Scanner;
+
+public class Test11 {
+    public static void main(String[] args) {
+        /*键盘录入一个大于等于2的整数x，计算并返回x的平方根
+        * 结果只保留整数部分，小数部分将被舍去*/
+        //分析：
+        //平方根 16的平方根4
+        //10
+        //1 * 1 =1 < 10
+        //2 * 2 =4 < 10
+        //3 * 3 =9 < 10
+        //4 * 4 =16> 10
+        //推断：10的平方根在3-4之间
+        //从1开始循环，拿着数字的平方跟原来的数字进行比较
+        //如果小于的，继续往后进行判断
+        //如果大于的，前一个数字就是平方根的整数
+        //1.键盘录入一个大于等于2的整数
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入一个大于等于2的整数：");
+        int number = sc.nextInt();
+        //2.利用for循环
+        //从1开始，number结束
+        for (int i = 1;i <= number;i++){
+            if (i*i == number){
+                System.out.println(number+"的平方根的整数部分"+i);
+                break;
+            } else if (i*i > number) {
+                System.out.println(number+"的平方根的整数部分"+(i-1));
+                break;
+            }
+        }
+    }
+}
+```
+
+### 求质数
+
+```java
+import java.util.Scanner;
+
+public class Test12 {
+    public static void main(String[] args) {
+        /*键盘录入一个正整数x，判断该整数是否是一个质数*/
+        //质数：
+        //如果一个数字只能被1和他本身整除，那么这个数字是质数，否则这个数字是合数
+
+        //1.键盘录入一个正整数
+        Scanner sc = new Scanner(System.in);
+        System.out.println("请输入整数:");
+        int x = sc.nextInt();
+
+        //定义一个变量，记录能被整除的次数
+        int count = 0;
+        //2.利用for循环输出1-x范围内的每一个数，并且进行判断
+        for (int i = 1;i <= x;i++){
+            if (x % i == 0){
+                count++;
+            }
+        }
+        if (count == 2){
+            System.out.println(x+"是质数");
+        }else {
+            System.out.println(x+"不是质数");
+        }
+    }
+}
+
+```
+
+### 猜数字的游戏
+
+#### 获取随机数
+
+```java
+//1.导包,Random这个类在哪里
+import java.util.Random;
+//2.创建对象,表示要开始用Random这个类了
+Random r = new Random();
+//3.生成随机数
+int number = r.nextInt(随机数的范围);
+```
+
+> 随机数范围注意:
+>
+> 在小括号中，书写的是生成随机数的范围
+> 这个范围一定是从0开始的
+> 到这个数-1结束
+> 口诀：==包头不包尾，包左不包右==
+
+```java
+import java.util.Random;
+import java.util.Scanner;
+
+public class Game2 {
+    public static void main(String[] args) {
+        /*程序自动生成一个1-100之间的随机数字
+        * 使用程序实现猜出这个数字是多少*/
+
+        //1.先获取一个随机数
+        //范围0-10
+        Random r = new Random();
+        //生成随机数
+        //在小括号中，书写的是生成随机数的范围
+        //这个范围一定是从0开始的
+        //到这个数-1结束
+        //口诀：包头不包尾，包左不包右
+        int number = r.nextInt(101);//0-100
+        //2.猜这个数字是多少
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            System.out.println("请输入你要猜的数字:");
+            int guessNumber = sc.nextInt();
+            //3.判断两个数字给出不同的提示
+            if (guessNumber > number){
+                System.out.println("大了");
+            } else if (guessNumber < number) {
+                System.out.println("小了");
+            }else {
+                System.out.println("猜中了");
+                break;
+            }
+        }
+    }
+}
+```
+
+## 数组
+
+### 数组介绍
+
+> 数组指的是一种容器,可以用来存储==同种数据类型==的多个值
+
+>1. 数组容器存储的时候,需要结合隐式转换考虑
+>2. 例如: int类型的数组容器(~~boolean~~、byte、short、int、~~double~~)
+>3. 例如: double类型的数组容器(byte、short、int、long、float、double)
+>4. 参考: double>float>long>int>short>byte
+>5. 建议:容器的类型,和存储的数据类型保持一致
+
+### 数组的定义和静态初始化
+
+#### 数组的定义
+
+##### 格式一
+
+```java
+数据类型[] 数组名
+//例如: int[] arry
+```
+
+##### 格式二
+
+```java
+数据类型 数组名[]
+//例如: int arry[]
+```
+
+#### 数组初始化
+
+> 初始化: 就是在内存中,为数组容器开辟空间,并将数据存入容器的过程
+
+##### 完整格式
+
+```java
+数据类型[] 数组名 = new 数据类型[]{元素1,元素2,元素3.....};
+//例子: int[] arry =new int[]{1,2,3};
+```
+
+##### 简写格式
+
+```java
+数据类型[] 数组名 = {元素1,元素2,元素3....};
+//例子: int[] arry = {1,2,3};
+```
+
+### 数组的地址值
+
+#### 数组的地址值
+
+```java
+public class ArrayDemo1 {
+    public static void main(String[] args) {
+        //定义一个数组
+        int[] array1 = {1,2,3,4};
+        System.out.println(array1); //[I@2f92e0f4 //数组的地址值
+    }
+}
+```
+
+> 扩展:
+>
+> ```java
+> //定义一个数组
+> int[] array1 = {1,2,3,4};
+> System.out.println(array1); //[I@2f92e0f4 //数组的地址值
+> ```
+>
+> - [I@2f92e0f4
+> - [ ,表示当前是一个数组
+> - I ,表示当前数组里面的元素都是int类型
+> - @ ,表示一个间隔符号,固定类型
+> - 2f92e0f4 , 数组真正的地址值,十六进制
+
+### 数组元素访问
 
 #### 格式
 
 ```java
-初始化语句;
-do{
-  循环体语句;
-  条件控制语句;
-}while(条件判断语句);
+数组名[索引];
 ```
 
-> 先执行后判断
+#### 索引
 
-> ==运行流程==
+> 索引: 下标,角标
 >
-> 初始化语句 -> 循环体语句 -> 条件控制语句 -> 条件判断语句(ture -> 循环体语句)
+> 索引特点: ==从0开始,逐个+1增长==,连续不间断
+
+### 数组元素存储
+
+#### 格式
+
+```java
+数组名[索引] = 具体数据/变量;
+```
+
+```java
+int[] array1 = {1,2,3,4};
+array1[0] = 100;
+System.out.println(array1[0]); //100
+```
+
+> 注意:
+>
+> 一旦==覆盖==元素组之后,原来的数据就==不存在==了
+
+### 数组遍历
+
+> 将数组中所有的内容取出来,取出来之后可以(打印,求和,判断...)
+>
+> 注意:
+>
+> 遍历指的是==取出数据==的过程,不仅仅打印
+
+#### 数组长度属性
+
+> 在java中,关于数组的一个长度属性,length
+>
+> ==调用方式:== `数组名.length``
+
+```java
+public class ArrayDemo1 {
+    public static void main(String[] args) {
+        //定义一个数组
+        int[] arr = {1,2,3,4};
+        //利用循环遍历
+        //开始条件：0
+        //结束条件：数组长度 - 1 （最大索引）
+
+        //在java中,关于数组的一个长度属性,length
+        //调用方式:数组名.length
+        for (int i = 0;i <= arr.length-1;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}
+```
+
+#### 变化数据练习
+
+```java
+public class ArrayDemo2 {
+    public static void main(String[] args) {
+        /*定义一个数组，存储1，2，3，4，5，6，7，8，9，10
+        * 遍历数组得到每一个元素
+        * 要求：
+        * 1.如果是奇数，则将当前数据扩大两倍
+        * 2.如果是偶数，则将当前数据变成二分之一*/
+
+        //1.定义一个数组，存1，2，3，4，5，6，7，8，9，10
+        int[] arr = {1,2,3,4,5,6,7,8,9,10};
+
+        //2.遍历数组得到每一个元素
+        for (int i = 0 ;i < arr.length;i++){
+            //3.对每一个元素进行判断
+            if (arr[i] % 2 ==0 ){
+                arr[i] = arr[i] / 2;
+                System.out.println(arr[i]);
+            }else {
+                arr[i] = arr[i] * 2;
+                System.out.println(arr[i]);
+            }
+        }
+    }
+}
+
+```
+
+### 数组动态初始化
+
+动态初始化: 初始化时只指定数组长度,由系统为数组分配初始值
+
+```java
+数据类型[] 数组名 = new 数据类型[数组长度]
+```
+
+> 数组默认初始化值的规律:
+>
+> 1. 整数类型,默认初始化值0
+> 2. 小数类型,默认初始化值0.0
+> 3. 字符类型,默认初始化值'/u0000' 空格
+> 4. 布尔类型,默认初始化值false
+> 5. 引用数据类型,默认初始化值 null
+
+```java
+public class ArrayDemo3 {
+    public static void main(String[] args) {
+        /*定义一个数组，用来存储班级中50个学生的姓名
+        * 姓名未知，等学生报道之后，再进行添加*/
+        //格式：
+        //数据类型[] 数组名 = new 数据类型[数组长度]
+        //在创建的时候，由我们自己指定数组长度，由虚拟机给出默认的初始化值
+
+        String[] arr = new String[50];
+        //添加学生
+        arr[0] = "Lisi";
+        arr[1] = "Zhangsan";
+        //获取
+        System.out.println(arr[0]);
+        System.out.println(arr[1]);
+        System.out.println(arr[2]); //打印出来的是默认初始化值null
+    }
+}
+```
+
+### 数组练习
+
+```java
+import java.util.Random;
+
+public class ArrayTest2 {
+    public static void main(String[] args) {
+        /*生成10个1-100之间的随机数存入数组
+        * 1.求出所有数据的和
+        * 2.求所有数据的平均值
+        * 3.统计有多少个数据比平均值小*/
+
+        //1.创建一个动态初始化数组
+        int[] arr = new int[10];
+        //2.生成随机数并且导入
+        Random sr = new Random();
+        for (int i = 0; i <= 9; i++){
+            arr[i] = sr.nextInt(100) + 1;
+            System.out.println(arr[i]);
+        }
+
+        //3.求和
+        int sum = 0;
+        for (int x = 0;x < arr.length;x++){
+            sum += arr[x];
+        }
+        System.out.println("所有数据的和:"+sum);
+
+        //4.求平均值
+        int avg = sum / arr.length;
+        System.out.println("所有数据的平均值:"+avg);
+
+        //5.统计有多少个数据比平均值小
+        //计数器
+        int count = 0;
+        for (int y = 0;y < arr.length;y++){
+            if (arr[y] < avg){
+                count++;
+            }
+        }
+        System.out.println("有"+count+"个数据比平均值小");
+
+    }
+}
+```
+
+#### java数组求最值
+
+```java
+public class ArrayTest1 {
+    public static void main(String[] args) {
+        /*求最值
+        * 已知数组元素为[33，5，22，44，55]
+        * 求出数组中最大值并且打印在控制台*/
+        //1.定义一个数组
+        int[] arr = {33,5,22,44,55};
+        //4.定义一个动态变量
+        int result = 0;
+        //2.for循环遍历数组每一个元素
+        for (int i = 0;i < arr.length;i++){
+            //3.对每一个元素进行判断
+            if (arr[i] > result){
+                result =arr[i];
+            }
+        }
+        System.out.println(result);
+    }
+}
+
+```
+
+#### 交换数组中的数据
+
+```java
+public class ArrayTest3 {
+    public static void main(String[] args) {
+        /*定义一个数组，存入1，2，3，4，5。按照要求交换索引对应的元素
+        * 交换前：1，2，3，4，5
+        * 交换后：5，2，3，4，1*/
+
+        //1.定义一个数组
+        int[] arr = {1,2,3,4,5};
+        //2.将0索引和最大索引的值进行交换
+        int temp = arr[0]; //中间变量
+        arr[0] = arr[arr.length-1];
+        arr[arr.length-1] = temp;
+
+        //3.打印交换后的数组
+        for (int i = 0;i < arr.length;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}
+```
+
+```java
+public class ArrayTest3 {
+    public static void main(String[] args) {
+        /*定义一个数组，存入1，2，3，4，5。按照要求交换索引对应的元素
+        * 交换前：1，2，3，4，5
+        * 交换后：5，4，3，2，1*/
+
+        //1.定义一个数组
+        int[] arr = {1,2,3,4,5};
+        //2.利用循环去交换数据
+        for (int i = 0,j = arr.length-1;i < j;i++,j--){
+            //交换变量i和j指向的元素
+            int temp = arr[i]; //中间变量
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        for (int i=0;i<arr.length;i++){
+            System.out.println(arr[i]);
+        }
+    }
+}
+```
+
+## java内存分配
+
+### 栈
+
+> ==方法==运行时使用的内存,比如main方法运行,进入方法栈中执行
+
+### 堆
+
+> 存储对象或者数组,==new==来创建,都存储在堆内存
+
+### 方法区
+
+> 存储可以运行的class文件
