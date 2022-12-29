@@ -1651,3 +1651,284 @@ public class ArrayTest3 {
 ### 方法区
 
 > 存储可以运行的class文件
+
+## 方法
+
+### 什么是方法
+
+方法是程序中最小的执行单元
+
+例如main方法
+
+### 使用场景
+
+重复的代码、具有独立功能的代码可以抽取到方法中
+
+- 可以提高代码的复用性
+- 可以提高代码的可维护性
+
+### 方法的格式
+
+#### 方法定义
+
+把一些代码打包在一起
+
+#### 方法调用
+
+方法定义后并不是直接运行,需要手动调用才能执行,该过程称为方法调用
+
+#### 格式
+
+##### 最简单的方法定义和调用
+
+```java
+public static void 方法名(){
+  方法体;
+}
+```
+
+> 在main方法里面调用我们自定义的方法
+>
+> 方法名();
+
+##### 带参数的方法定义和调用
+
+```java
+public static void 方法名(参数){
+  
+}
+```
+
+```java
+public static void 方法名(参数1,参数2,参数3.....){
+
+}
+```
+
+######  调用
+
+```java
+//单个参数: 方法名(参数);
+//多个参数: 方法名(参数1,参数2,参数3.....);
+```
+
+```java
+public static void method(int num1, int num2){ //形参
+  int result = num1 + num2;
+  System.out.println(result);
+}
+//main方法调用 method(10,20)//实参  //30
+```
+
+###### 形参和实参
+
+> ==形参==: 全称形式参数,是指==方法定义==中的参数
+>
+> ==实参==: 全称实际参数,方法调用中的参数
+
+==注意==:方法调用时,参数的数量与类型必须与方法中小括号里面的变量一一对应,否则程序报错
+
+##### 带返回值方法的定义
+
+```java
+public static 返回值类型 方法名(参数){
+  方法体;
+  return 返回值;
+}
+```
+
+例子:
+
+```java
+public static int getSum(int a,int b){
+  int c = a + b;
+  return c;
+}
+```
+
+###### 调用
+
+1.直接调用
+
+`方法名(参数);`
+
+2.赋值调用
+
+`整数类型 变量名 = 方法名(参数);`
+
+3.输出调用
+
+`System.out.println(方法名(参数));`
+
+### 方法的注意
+
+- 方法不调用就不执行
+- 方法与方法之间时平级关系,不能互相嵌套定义
+- 方法的编写顺序和执行顺序无关
+- 方法的返回类型为void,表示该方法没有返回值,没有返回值的方法可以省略return语句不写,如果要编写return,后面不能跟具体的数据.
+- return语句下面,不能编写代码,因为永远执行不到,属于无效代码
+
+### 方法的重载
+
+同一个类中,==方法名相同==,==参数不同==的方法,与返回值无关.
+
+参数不要同:个数不同、类型不同、顺序不同
+
+### 方法练习
+
+#### 遍历求最大值
+
+##### 数组遍历
+
+```java
+public class printDemo {
+    public static void main(String[] args) {
+        System.out.print("abc");//只打印abc，不换行
+        System.out.println("bcd");
+        System.out.println(); //不打印任何数据，只能换行处理
+    }
+}
+```
+
+```java
+public class MethodDemo2 {
+    public static void main(String[] args) {
+        //1.定义一个数组
+        int[] arr = {11,22,33,44,55};
+        printArr(arr);
+    }
+
+    /*设计一个方法用于遍历，要求遍历的结果是在一行上，例如：[11，22，33，44，55]*/
+    public static void printArr(int[] arr){
+        System.out.print('[');
+        for (int i = 0;i < arr.length;i++){
+            if (i == arr.length -1){
+                System.out.print(arr[i]);
+            }else{
+                System.out.print(arr[i]+",");
+            }
+        }
+        System.out.println(']');
+
+    }
+
+}
+```
+
+##### 数组最大值
+
+```java
+public class MethodDemo3 {
+    //设计一个方法求数组最大值，并将最大值返回
+    public static void main(String[] args) {
+        //1.定义一个数组
+        int[] arr = {1,2,3,5,7,2,3};
+        //2.调用方法求最大值
+        int max = maxDemo(arr);
+        System.out.println(max);
+    }
+    public static int maxDemo(int[] arr){
+        int max = arr[0];
+        for (int i = 1;i < arr.length;i++){
+            if (arr[i] >max){
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+}
+```
+
+##### 判断一个数字是否在数组中存在
+
+```java
+public class MethodTest1 {
+    //定义一个方法判断数组中的某一个数是否存在，并将结果返回给调用处
+    public static void main(String[] args) {
+        //1.定义一个数组
+        int[] arr = {1,2,3,4,5,6};
+        //2.调用方法判断
+        boolean result = contains(arr,10);
+        System.out.println(result);
+    }
+    public static boolean contains(int[] arr,int number){
+        for (int i = 0;i < arr.length;i++){
+            if (arr[i] == number){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+```
+
+##### 拷贝数组
+
+```java
+public class MethodTest2 {
+    /*定义一个方法copyOfRange(int[] arr,int from,int to)
+    * 将数组arr中从索引from（包含from）开始
+    * 到索引to结束（不包含to）的元素复制到新数组中
+    * 将新数组返回*/
+    public static void main(String[] args) {
+        //1.定义个数组
+        int[] arr = {1,2,3,4,5,6,7};
+        //2.调用方法
+        int[] copyArr = copyOfRange(arr,3,6);
+        for (int i:copyArr){
+            System.out.println(i);
+        }
+    }
+    public static int[] copyOfRange(int[] arr,int from,int to){
+        //1.定义新数组
+        int[] newArr = new int[to-from];
+        //2.拷贝到新数组
+        //伪造索引
+        int index = 0;
+        for (int i = from;i < to;i++){
+            newArr[index] = arr[i];
+            index++;
+        }
+        //3.返回
+        return newArr;
+    }
+}
+
+```
+
+### 方法的值传递
+
+传递基本数据类型时,传递的是真实的数据,形参的改变,不影响实际参数的值
+
+```java
+public class ArgsDemo1 {
+    public static void main(String[] args) {
+        int number = 100;
+        System.out.println("调用change方法前:"+number);
+        change(number);
+        System.out.println("调用change方法后:"+number);
+    }
+    public static void change(int number){
+        number = 200;
+    }
+}
+```
+
+传递应用数据类型时,传递的是地址值,形参的改变,影响实际参数的值
+
+```java
+public class ArgsDemo2 {
+    public static void main(String[] args) {
+        int[] arr = {1,2,3};
+        System.out.println("调用change方法前:"+arr[1]);
+        change(arr);
+        System.out.println("调用change方法后:"+arr[1]);
+    }
+    public static void change(int[] arr){
+        arr[1] = 200;
+    }
+}
+```
+
