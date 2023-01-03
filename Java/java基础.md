@@ -1,11 +1,3 @@
-
-
-[TOC]
-
-
-
-------
-
 # Java基础
 
 ## Hello World
@@ -3076,7 +3068,7 @@ public class StringBuilderDemo7 {
 | `public int length()`                 | 返回长度(字符出现的个数)                   |
 | `public String toString()`            | 返回一个字符串(改字符串就是拼接之后的结果) |
 
-### 基本使用：
+### 基本使用
 
 ```java
 //1.创建一个对象，并指定中间的间隔符号
@@ -3100,7 +3092,7 @@ String str = sj.toString();
 System.out.println(str);//[aaa, bbb, ccc]
 ```
 
-## 关于字符串的扩展：
+## 关于字符串的扩展
 
 1. 字符串存储的内存原理
 
