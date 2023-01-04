@@ -3133,3 +3133,160 @@ System.out.println(str);//[aaa, bbb, ccc]
    触发字符串的优化机制
 
    在编译的时候就已经是最终的结果了     
+
+## 集合
+
+1. 集合长度可变
+2. 可以存引用数据类型,**基本数据类型需要包装类**
+
+### 包装类
+
+| byte    | Byte      |
+| ------- | --------- |
+| short   | Short     |
+| char    | Character |
+| int     | Integer   |
+| long    | Long      |
+| float   | Float     |
+| double  | Double    |
+| boolean | Boolean   |
+
+
+
+### ArrayList
+
+泛型: 限定集合中存储数据的类型<E>
+
+**<>中写入需要存储的数据类型,不能是基本数据类型**
+
+- 打印对象不是地址值,而是集合中存储的数据内容
+- 在展示的时候会拿两个[]把所有的数据进行包裹展示
+
+```java
+import java.util.ArrayList;
+
+public class ArrayDemo1 {
+    public static void main(String[] args) {
+        //1.创建集合对象
+        ArrayList<String> list = new ArrayList<>();
+    }
+}
+```
+
+#### 成员方法
+
+|      |         方法名         |                说明                 |
+| :--: | :--------------------: | :---------------------------------: |
+|  增  |   `boolean add(E e)`   |   添加元素,返回值表示是否添加成功   |
+|  删  | `boolean remove(E e)`  |   删除指定元素,返回值是否删除成功   |
+|      | `E remove(int index)`  |  删除指定索引的元素,返回被删除元素  |
+|  改  | `E set(int index,E e)` | 修改指定索引下的元素,返回原来的元素 |
+|  查  |   `E get(int index)`   |         获取指定索引的元素          |
+|      |      `int size()`      |  集合的长度,也就是集合中元素的个数  |
+
+```java
+import java.util.ArrayList;
+
+public class ArrayDemo1 {
+    public static void main(String[] args) {
+        //1.创建集合对象
+        ArrayList<String> list = new ArrayList<>();
+        System.out.println(list);
+        //2.添加数据
+        list.add("aaa");
+        list.add("bbb");
+        list.add("ccc");
+        list.add("eee");
+        System.out.println("---增---");
+        System.out.println(list); //[aaa, bbb, ccc, eee]
+        //2.删除数据
+        System.out.println("---删---");
+        boolean result = list.remove("ccc");
+        System.out.println(result); //true
+        System.out.println(list); //[aaa, bbb, eee]
+        boolean result1 = list.remove("ddd");  
+        System.out.println(result1); //false
+        System.out.println(list);// [aaa, bbb, eee]
+        String result2 = list.remove(1);
+        System.out.println(result2); //bbb
+        System.out.println(list); //[aaa, eee]
+        //3.修改数据
+        System.out.println("---改---");
+        list.set(0,"我喜欢你");
+        System.out.println(list);// [我喜欢你, eee]
+        //4.查找数据
+        String result3 = list.get(0);
+        System.out.println(result3); //我喜欢你
+        //5.集合长度
+        int result4 = list.size();
+        System.out.println(result4); //2
+    }
+}
+```
+
+
+
+#### 练习
+
+1.定义一个集合,添加字符串,并进行遍历,遍历格式参照: [元素1,元素2,元素3]
+
+```java
+import java.util.ArrayList;
+
+public class ArrayListDemo1 {
+    //定义一个集合,添加字符串,并进行遍历,遍历格式参照: [元素1,元素2,元素3]
+    public static void main(String[] args) {
+        //1.定义一个集合
+        ArrayList<String> list = new ArrayList<>();
+        //2.添加元素
+        list.add("你好");
+        list.add("我喜欢你");
+        list.add("就是你");
+
+        //3.遍历元素
+        String result = "[";
+        for (int i = 0; i < list.size(); i++) {
+            if (i == list.size() -1){
+                result = result + list.get(i) + "]";
+            }else {
+                result = result + list.get(i) + ",";
+            }
+        }
+
+        //4.打印
+        System.out.println(result);
+    }
+}
+```
+
+2.定义一个集合,并添加数字,并进行遍历,遍历格式参照: [元素1,元素2,元素3]
+
+```java
+import java.util.ArrayList;
+
+public class ArrayListDemo2 {
+    //定义一个集合,并添加数字,并进行遍历,遍历格式参照: [元素1,元素2,元素3]
+    public static void main(String[] args) {
+        //1.定义一个集合
+        ArrayList<Integer> list = new ArrayList<>();
+        //2.添加元素
+        list.add(5);
+        list.add(2);
+        list.add(1);
+
+        //3.遍历元素
+        String result = "[";
+        for (int i = 0; i < list.size(); i++) {
+            if (i == list.size() -1){
+                result = result + list.get(i) + "]";
+            }else {
+                result = result + list.get(i) + ",";
+            }
+        }
+
+        //4.打印
+        System.out.println(result);
+    }
+}
+```
+
