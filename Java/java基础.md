@@ -2880,7 +2880,7 @@ StringBuilder 可以看成是一个容器，创建之后里面的**内容是可�
 当我们在**拼接字符串和反转字符串**的时候会使用到
 
 ```java
- //因为StringBuilder是Java已经写好的类
+//因为StringBuilder是Java已经写好的类
 //java在底层对他做了一些特殊处理。
 //打印对象不是地址值而是属性值。
 ```
@@ -3136,3 +3136,4 @@ System.out.println(str);//[aaa, bbb, ccc]
 
 ​          
 
+<script src="https://gist.github.com/wql521/9119783d884290193abc7041e02cf4e5.js"></script>
