@@ -3133,11 +3133,3 @@ System.out.println(str);//[aaa, bbb, ccc]
    触发字符串的优化机制
 
    在编译的时候就已经是最终的结果了     
-
-
-
-
-
-<div>
-  <script src="https://gist.github.com/wql521/9119783d884290193abc7041e02cf4e5.js"></script>
-</div>
