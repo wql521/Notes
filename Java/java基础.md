@@ -985,6 +985,39 @@ public class whileDemo1 {
 }
 ```
 
+#### 给循环起标识符
+
+给循环起个标识符，对**指定循环**进行操作.
+
+```java
+public static void main(String[] args) {
+        loop: while (true) { //给循环起个标识符，让break跳出while循环
+            System.out.println("----------欢迎来到学生管理系统----------");
+            System.out.println("1.添加学生");
+            System.out.println("2.删除学生");
+            System.out.println("3.修改学生");
+            System.out.println("4.查询学生");
+            System.out.println("5.退出");
+            System.out.print("请输入您的选择:");
+            Scanner sc = new Scanner(System.in);
+            String choose = sc.next();
+            switch (choose){
+                case "1" -> System.out.println("添加学生");
+                case "2" -> System.out.println("删除学生");
+                case "3" -> System.out.println("修改学生");
+                case "4" -> System.out.println("查询学生");
+                case "5" -> {
+                    System.out.println("退出");
+                    break loop; //单个break只会跳出switc循环，break+标识符可以跳出指定循环
+                }
+                default -> System.out.println("没有这个选项");
+            }
+        }
+    }
+```
+
+
+
 #### for循环和while循环的对比
 
 >相同点:运行规则一样
@@ -3288,5 +3321,808 @@ public class ArrayListDemo2 {
         System.out.println(result);
     }
 }
+```
+
+3.创建一个存储学生对象的集合，存储3个学生对象，使用程序实现在控制台遍历该集合
+
+```java
+import java.util.ArrayList;
+
+public class ArrayListDemo3 {
+    public static void main(String[] args) {
+        //创建一个存储学生对象的集合，存储3个学生对象，使用程序实现在控制台遍历该集合
+        //1.创建集合
+        ArrayList<Student> list = new ArrayList<>();
+        //2.创建学生对象
+        Student stu1 = new Student("zhangsan",19);
+        Student stu2 = new Student("lisi",18);
+        Student stu3 = new Student("wangsu",16);
+        //3.向集合添加元素
+        list.add(stu1);
+        list.add(stu2);
+        list.add(stu3);
+        //4.遍历集合
+        for (int i = 0; i < list.size(); i++) {
+            //i索引list.get(i) 元素/学生对象
+            Student stu = list.get(i);
+            System.out.println(stu.getName()+","+stu.getAge());
+        }
+    }
+}
+```
+
+4.需求： 
+
+1，main方法中定义一个集合，存入三个用户对象。 
+
+   用户属性为：id，username，password    
+
+2，要求：定义一个方法，根据id查找对应的学生信息。
+
+   如果存在，返回索引
+
+   如果不存在，返回-1
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ArrayListDemo4 {
+    /*
+    * 需求：
+
+      1，main方法中定义一个集合，存入三个用户对象。
+
+         用户属性为：id，username，password
+
+      2，要求：定义一个方法，根据id查找对应的学生信息。
+
+         如果存在，返回索引
+
+         如果不存在，返回-1
+    * */
+    public static void main(String[] args) {
+        //1.定义一个集合
+        ArrayList<User> list = new ArrayList<>();
+        //2.创建用户对象
+        User us1 = new User("wql","Wangqianlong",123);
+        User us2 = new User("hx","hanxin",456);
+        User us3 = new User("xz","xingzhen",789);
+        //3.向集合中存储对象
+        list.add(us1);
+        list.add(us2);
+        list.add(us3);
+        //4.键盘输入查询id
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入id：");
+        String id = sc.next();
+        int result = checkid(list,id);
+        System.out.print("查询结果:"+result);
+
+
+    }
+    //4.定义方法，通过id查找对应学生信息
+    public static int checkid(ArrayList<User> list,String id){
+        //遍历获取每个id
+        for (int i = 0; i < list.size(); i++) {
+            User user = list.get(i); //获取集合每一个元素
+            if (user.getId().equals(id)){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+```
+
+#### 学生管理系统
+
+##### 需求：
+
+​	采取控制台的方式去书写学生管理系统。
+
+##### 分析：
+
+##### 初始菜单：
+
+```java
+"-------------欢迎来到学生管理系统----------------"
+"1：添加学生"
+"2：删除学生"
+"3：修改学生"
+"4：查询学生"
+"5：退出"
+"请输入您的选择:"
+```
+
+###### 学生类：
+
+​	属性：id、姓名、年龄、家庭住址
+
+###### 添加功能：
+
+​	键盘录入每一个学生信息并添加，需要满足以下要求：
+
+* id唯一
+
+###### 删除功能：
+
+​	键盘录入要删除的学生id，需要满足以下要求：
+
+* id存在删除
+* id不存在，需要提示不存在，并回到初始菜单
+
+###### 修改功能：
+
+​	键盘录入要修改的学生id，需要满足以下要求
+
+* id存在，继续录入其他信息
+* id不存在，需要提示不存在，并回到初始菜单
+
+###### 查询功能：
+
+​	打印所有的学生信息，需要满足以下要求
+
+* 如果没有学生信息，提示：当前无学生信息，请添加后再查询
+* 如果有学生信息，需要按照以下格式输出。（不用过于纠结对齐的问题）
+
+```java
+id			姓名		年龄		家庭住址
+ha001	张三		23		 南京
+ha002	李四		24		 北京
+ha003	王五		25		 广州
+ha004	赵六	 	26		 深圳
+```
+
+- 案例需求
+
+  ​	完成一个综合案例：学生管理系统。该系统主要功能如下：
+
+  ​	添加学生：通过键盘录入学生信息，添加到集合中
+
+  ​	删除学生：通过键盘录入要删除学生的学号，将该学生对象从集合中删除
+
+  ​	修改学生：通过键盘录入要修改学生的学号，将该学生对象其他信息进行修改
+
+  ​	查看学生：将集合中的学生对象信息进行展示
+
+  ​	退出系统：结束程序
+
+- 实现步骤
+
+  1. 定义学生类，包含以下成员变量
+
+     ​       private String sid            // 学生id
+
+     ​       private String name       // 学生姓名
+
+     ​       private String age          // 学生年龄
+
+     ​       private String address   // 学生所在地
+
+  2. 学生管理系统主界面的搭建步骤
+
+     2.1 用输出语句完成主界面的编写
+     2.2 用Scanner实现键盘输入
+     2.3 用switch语句完成选择的功能
+     2.4 用循环完成功能结束后再次回到主界面
+
+  3. 学生管理系统的添加学生功能实现步骤
+
+     3.1 定义一个方法，接收ArrayList<Student>集合
+     3.2 方法内完成添加学生的功能
+     ​         ①键盘录入学生信息
+     ​         ②根据录入的信息创建学生对象
+     ​         ③将学生对象添加到集合中
+     ​         ④提示添加成功信息
+     3.3 在添加学生的选项里调用添加学生的方法
+
+  4. 学生管理系统的查看学生功能实现步骤
+
+     4.1 定义一个方法，接收ArrayList<Student>集合
+     4.2 方法内遍历集合，将学生信息进行输出
+     4.3 在查看所有学生选项里调用查看学生方法
+
+  5. 学生管理系统的删除学生功能实现步骤
+
+     5.1 定义一个方法，接收ArrayList<Student>集合
+     5.2 方法中接收要删除学生的学号
+     5.3 遍历集合，获取每个学生对象
+     5.4 使用学生对象的学号和录入的要删除的学号进行比较,如果相同，则将当前学生对象从集合中删除
+     5.5 在删除学生选项里调用删除学生的方法
+
+  6. 学生管理系统的修改学生功能实现步骤
+
+     6.1 定义一个方法，接收ArrayList<Student>集合
+     6.2 方法中接收要修改学生的学号
+     6.3 通过键盘录入学生对象所需的信息，并创建对象
+     6.4 遍历集合，获取每一个学生对象。并和录入的修改学生学号进行比较.如果相同，则使用新学生对象替换当前学生对象
+     6.5 在修改学生选项里调用修改学生的方法
+
+  7. 退出系统
+
+     使用System.exit(0);退出JVM
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class StudentSystem {
+    public static void main(String[] args) {
+        ArrayList<Student> list = new ArrayList<>();
+        loop: while (true) { //给循环起个标识符，让break跳出while循环
+            System.out.println("----------欢迎来到学生管理系统----------");
+            System.out.println("1.添加学生");
+            System.out.println("2.删除学生");
+            System.out.println("3.修改学生");
+            System.out.println("4.查询学生");
+            System.out.println("5.退出");
+            System.out.print("请输入您的选择:");
+            Scanner sc = new Scanner(System.in);
+            String choose = sc.next();
+            switch (choose){
+                case "1" -> addStudent(list);
+                case "2" -> deleteStudent(list);
+                case "3" -> updateStudent(list);
+                case "4" -> queryStudent(list);
+                case "5" -> {
+                    System.out.println("退出");
+                    break loop; //单个break只会跳出switc循环，break+标识符可以跳出指定循环
+                    //System.exit(0); 停止虚拟机运行
+                }
+                default -> System.out.println("没有这个选项");
+            }
+        }
+    }
+    //添加学生
+    public static void addStudent(ArrayList<Student> list){
+        Scanner sc = new Scanner(System.in);
+        String id;
+        while (true) {
+            System.out.print("请输入学生id:");
+            id = sc.next();
+            int result = checkId(list,id);
+            if (result >= 0){
+                //表示存在，需要重新需入
+                System.out.println("id已经存在，请重新录入");
+            }else {
+                //id不存在,表示可以继续使用
+                break;
+            }
+        }
+        System.out.print("请输入学生姓名:");
+        String name = sc.next();
+        System.out.print("请输入学生年龄:");
+        int age = sc.nextInt();
+        System.out.print("请输入学生家庭住址:");
+        String adress = sc.next();
+        //创建学生对象
+        Student student = new Student(id,name,age,adress);
+        //向集合中添加学生对象
+        list.add(student);
+        System.out.println("添加成功");
+    }
+    //删除学生
+    public static void deleteStudent(ArrayList<Student> list){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入要删除学生的id:");
+        String deleteId = sc.next();
+        int result = checkId(list,deleteId);
+        if (result >= 0){
+            list.remove(result);
+            System.out.println("删除成功");
+        }else{
+            System.out.println("没有要删除人的信息");
+        }
+    }
+    //修改学生
+    public static void updateStudent(ArrayList<Student> list){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入要修改学生的id:");
+        String updateId = sc.next();
+        int resultindex = checkId(list,updateId);
+        if (resultindex == -1){
+            //表示修改人不在集合中
+            System.out.println("要修改的id:"+updateId+"不存在，请重新输入");
+            return;
+        }
+        //修改人在集合中
+        //获取要修改的学生对象
+        Student student = list.get(resultindex);
+        //输入信息进行修改
+        System.out.print("请输入修改后的学生姓名:");
+        String newName = sc.next();
+        student.setName(newName);
+        System.out.print("请输入修改后的学生年龄:");
+        int newAge = sc.nextInt();
+        student.setAge(newAge);
+        System.out.print("请输入修改后的学生家庭住址:");
+        String newAdress = sc.next();
+        student.setAdress(newAdress);
+        System.out.println("修改成功");
+    }
+    //查询学生
+    public static void queryStudent(ArrayList<Student> list){
+        if (list.size() == 0){
+            System.out.println("当前无学生信息，请添加后再查询");
+            return; //结束本方法
+        }
+        //有学生信息，按照以下格式输出
+        System.out.println("id\t\t姓名\t年龄\t家庭住址");
+        for (int i = 0; i < list.size(); i++) {
+            Student student = list.get(i);
+            System.out.println(student.getId()+"\t"+student.getName()+"\t"+student.getAge()+"\t"+student.getAdress());
+        }
+    }
+    //通过id查询是否在集合中
+    public static int checkId(ArrayList<Student> list,String id){
+        for (int i = 0; i < list.size(); i++) {
+            Student student = list.get(i);
+            if (student.getId().equals(id)){
+                return i;
+            }
+        }
+        //不存在
+        return -1;
+    }
+}
+```
+
+#### 学生管理系统升级
+
+##### 需求：
+
+​	为学生管理系统书写一个登陆、注册、忘记密码的功能。
+
+​	只有用户登录成功之后，才能进入到学生管理系统中进行增删改查操作。
+
+##### 分析：
+
+###### 登录界面：
+
+```java
+System.out.println("欢迎来到学生管理系统");
+System.out.println("请选择操作1登录 2注册 3忘记密码");
+```
+
+###### 用户类：
+
+​	属性：用户名、密码、身份证号码、手机号码
+
+###### 注册功能：
+
+​	1，用户名需要满足以下要求：
+
+​		验证要求：
+
+​			用户名唯一
+
+​			用户名长度必须在3~15位之间 
+
+​			只能是字母加数字的组合，但是不能是纯数字
+
+​	2，密码键盘输入两次，两次一致才可以进行注册。
+
+​	3，身份证号码需要验证。
+
+​		验证要求：
+
+​			长度为18位
+
+​			不能以0为开头
+
+​			前17位，必须都是数字
+
+​			最为一位可以是数字，也可以是大写X或小写x
+
+​	4，手机号验证。
+
+​		验证要求：
+
+​			长度为11位
+
+​			不能以0为开头
+
+​			必须都是数字
+
+###### 登录功能：
+
+​	1，键盘录入用户名
+
+​	2，键盘录入密码
+
+​	3，键盘录入验证码
+
+验证要求：
+
+​		用户名如果未注册，直接结束方法，并提示：用户名未注册，请先注册
+
+​		判断验证码是否正确，如不正确，重新输入
+
+​		再判断用户名和密码是否正确，有3次机会
+
+###### 忘记密码：
+
+​       1，键盘录入用户名，判断当前用户名是否存在，如不存在，直接结束方法，并提示：未注册
+
+​	2，键盘录入身份证号码和手机号码
+
+​	3，判断当前用户的身份证号码和手机号码是否一致，
+
+​			如果一致，则提示输入密码，进行修改。
+
+​			如果不一致，则提示：账号信息不匹配，修改失败。
+
+###### 验证码规则：
+
+​	长度为5
+
+​	由4位大写或者小写字母和1位数字组成，同一个字母可重复
+
+​	数字可以出现在任意位置
+
+比如：
+
+​	aQa1K
+
+```java
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        ArrayList<User> list = new ArrayList<>();
+        while (true){
+            System.out.println("---------欢迎来到学生管理系统升级版---------");
+            System.out.println("请选择操作：1登陆，2注册，3忘记密码");
+            Scanner sc = new Scanner(System.in);
+            System.out.print("请输入选择:");
+            String choose = sc.next();
+            switch (choose){
+                case "1" -> Login(list);
+                case "2" -> register(list);
+                case "3" -> forgetPassword(list);
+                case "4" -> {
+                    System.out.println("谢谢使用，再见！");
+                    System.exit(0);
+                }
+                default -> System.out.println("没有这个选项");
+            }
+        }
+    }
+    //登陆
+    public static void Login(ArrayList<User> list){
+        //1.键盘录入用户名
+        Scanner sc =new Scanner(System.in);
+        for (int i = 0; true; i++) {
+            System.out.print("请输入用户名:");
+            String username = sc.next();
+            int checkIndex = checkIndex(list,username);
+            if (checkIndex == -1){
+                System.out.println("用户名"+username+"没有注册，请先注册再登陆");
+                return;
+            }
+            //2.键盘输入密码
+            System.out.println("请输入密码:");
+            String password = sc.next();
+            //3.键盘输入验证码
+            String rightCode = GetCode();
+            System.out.println("当前正确验证码:"+rightCode);
+            while (true) {
+                System.out.print("请输入验证码:");
+                String code = sc.next();
+                if (code.equalsIgnoreCase(rightCode)){
+                    System.out.println("验证码正确");
+                    break;
+                }else {
+                    System.out.println("验证码错误，请重新输入");
+                }
+            }
+            //验证用户名和密码是否正确
+            //将上面输入的数据封装为一个对象
+            User InfoUser = new User(username,password,null,null);
+            boolean Result = checkInfo(list,InfoUser);
+            if (Result){
+                System.out.println("登陆成功");
+                break;
+            }else {
+                System.out.println("登陆失败,用户名或密码错误");
+                if (i == 2){
+                    System.out.println("当前账号"+username+"被锁定");
+                    return;
+                }else {
+                    System.out.println("用户名或密码错误，还剩"+(2-i)+"次");
+                }
+            }
+        }
+    }
+    //注册
+    public static void register(ArrayList<User> list){
+        //1.键盘录入用于名
+        //用户名需要满足以下要求：
+        //验证要求：
+        //先验证格式是否正确，再验证是否唯一
+        //用户名长度必须在3~15位之间
+        //只能是字母加数字的组合，但是不能是纯数字
+        //用户名唯一
+        Scanner sc = new Scanner(System.in);
+        String name;
+        while (true) {
+            System.out.print("请输入用户名:");
+            name = sc.next();
+            boolean result = checkUsernmae(name);
+            if (!result){
+                System.out.println("用户名格式不满足条件，请重新输入!");
+                continue;
+            }
+            //判断用户名是否唯一
+            int resultIndex = checkIndex(list,name);
+            if (resultIndex >= 0){
+                //用户名存在
+                System.out.println("用户名"+name+"存在"+"，请重新输入。");
+            }else {
+                //用户名不存在，可以继续录入
+                System.out.println("用户名"+name+"可以使用。");
+                break;
+            }
+        }
+        //2.键盘输入密码
+        //密码键盘输入两次，两次一致才可以进行注册。
+        String password;
+        while (true) {
+            System.out.print("请输入要注册的密码:");
+            password = sc.next();
+            System.out.print("请再次输入要注册的密码:");
+            String againPassword = sc.next();
+            if (!password.equals(againPassword)){
+                System.out.println("两次密码输入不一致，请重新输入！");
+            }else{
+                System.out.println("两次密码输入一致，继续录入其他数据");
+                break;
+            }
+        }
+        //3.键盘输入身份证号
+        //验证要求：
+        //长度为18位
+        //不能以0为开头
+        //前17位，必须都是数字
+        //最为一位可以是数字，也可以是大写X或小写x
+        String personId;
+        while (true) {
+            System.out.print("请输入身份证号:");
+            personId = sc.next();
+            boolean result = checkpersonID(personId);
+            if (!result){
+                System.out.println("身份证格式不正确，请重新输入!");
+            }else {
+                System.out.println("身份证格式正确，请继续输入其他信息");
+                break;
+            }
+        }
+        //4.键盘输入手机号码
+        //验证要求：
+        //长度为11位
+        //不能以0为开头
+        //必须都是数字
+        String userPhone;
+        while (true) {
+            System.out.print("请输入注册手机号:");
+            userPhone = sc.next();
+            boolean resultnumber = checkPhoneNumber(userPhone);
+            if (!resultnumber){
+                System.out.println("手机号格式错误，请重新输入");
+            }else {
+                System.out.println("手机号正确");
+                break;
+            }
+        }
+        //创建用户对象
+        User user = new User(name,password,personId,userPhone);
+        //把用户对象添加到集合中
+        list.add(user);
+        System.out.println("注册成功");
+        pringList(list);
+    }
+    //打印集合的学生对象
+    public static void pringList(ArrayList<User> list){
+        for (User user : list) {
+            System.out.println(user.getUsername() + user.getPassword() + user.getPersonId() + user.getPhoneNumber());
+        }
+    }
+    //忘记密码
+    public static void forgetPassword(ArrayList<User> list){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("请输入用户名:");
+        String name =sc.next();
+        int Index = checkIndex(list,name);
+        if (Index == -1){
+            System.out.println("用户不存在，请先注册");
+            return;
+        }
+        //键盘录入身份证号和手机号码
+        System.out.print("请输入身份证号:");
+        String personID = sc.next();
+        System.out.print("请输入手机号码:");
+        String Phone = sc.next();
+        //判断当前用户的身份证号码和手机号码是否一致，
+        //封装用户的身份证号码和手机号码
+        User InfoUser = new User(null,null,personID,Phone);
+        boolean result = CheckInfo(list,InfoUser,Index);
+        if (!result){
+            System.out.println("账号信息不匹配");
+            return;
+        }
+        System.out.println("身份确认，可以修改密码");
+        String newPassword;
+        while (true) {
+            System.out.print("请输入修改后的密码:");
+            newPassword = sc.next();
+            System.out.print("请再次输入密码:");
+            String AgainNewPassword = sc.next();
+            if (newPassword.equals(AgainNewPassword)){
+                System.out.println("两次密码输入一致");
+                break;
+            }else{
+                System.out.println("两次密码不一致，请重新输入");
+                continue;
+            }
+        }
+        //修改数据
+        changeDate(list,Index,newPassword);
+        
+
+
+    }
+    //判断用户名格式
+    public static boolean checkUsernmae(String username){
+        //将字符串变为字符数组
+        char[] arr = username.toCharArray();
+        //计数器
+        int small = 0;
+        int big = 0;
+        int number = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] <= 'z' && arr[i] >= 'a'){
+                small++;
+            } else if (arr[i] <= 'Z' && arr[i] >= 'A') {
+                big++;
+            } else if (arr[i] <= '9' && arr[i] >= '0') {
+                number++;
+            }
+        }
+        //用户名长度必须在3~15位之间
+        //只能是字母加数字的组合，但是不能是纯数字
+        if ((small+big+number) >= 3 && (small+big+number) <=15){
+            if (small > 0 || big > 0){
+                return number != 0;
+            }else {
+                return false;
+            }
+        }else {
+            return false;
+        }
+    }
+    //判断用户名是否唯一
+    public static int checkIndex(ArrayList<User> list,String name){
+        for (int i = 0; i < list.size(); i++) {
+            User user = list.get(i);
+            if (user.getUsername().equals(name)){
+                return i;
+            }
+        }
+        //不存在,唯一
+        return -1;
+    }
+    //判断身份证号码
+    public static boolean checkpersonID(String personId){
+        //长度为18位
+        if (personId.length() != 18){
+            return false;
+        }
+        //不能以0为开头
+        if (personId.startsWith("0")){
+            return false;
+        }
+        //前17位，必须都是数字
+        for (int i = 0; i < personId.length(); i++) {
+            char c = personId.charAt(i);
+            if (!(c >= '0' && c <= '9')){
+                return false;
+            }
+        }
+        //最为一位可以是数字，也可以是大写X或小写x
+        char endChar = personId.charAt(personId.length()-1);
+        if ((endChar >= '0' && endChar <= '9') || (endChar == 'X') || (endChar == 'x')){
+            return true;
+        }else {
+            return false;
+        }
+    }
+    //判断手机号码
+    public static boolean checkPhoneNumber(String phonenumber){
+        //验证要求：
+        //长度为11位
+        if (phonenumber.length() != 11){
+            return false;
+        }
+        //不能以0为开头
+        if (phonenumber.startsWith("0")){
+            return false;
+        }
+        //必须都是数字
+        for (int i = 0; i < phonenumber.length(); i++) {
+            char c = phonenumber.charAt(i);
+            if (!(c >= '0' && c <= '9')){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //生成一个验证码
+    //长度为5
+    //由4位大写或者小写字母和1位数字组成，同一个字母可重复
+    //数字可以出现在任意位置
+    private static String GetCode(){
+        //1.创建一个集合添加所有的大写和小写字母
+        ArrayList<Character> list = new ArrayList<>();
+        for (int i = 0; i < 26; i++) {
+            list.add((char)('a' + i));
+            list.add((char)('A' + i));
+        }
+        //2.随机抽取4个字符
+        StringBuilder sb =new StringBuilder();
+        Random r = new Random();
+        for (int i = 0; i < 4; i++) {
+            //获取随机索引
+            int index = r.nextInt(list.size());
+            //利用随机索引获取字符
+            sb.append(list.get(index));
+        }
+        //3.把一个随机数字放到末尾
+        int number = r.nextInt(10);
+        sb.append(number);
+
+        //4.把字符串变成字符数组，在数组中修改，然后再穿件一个新的字符串
+        char[] arr = sb.toString().toCharArray();
+        //拿着最后一个索引，跟随机索引交换
+        int Index = r.nextInt(arr.length);
+        //交换索引指向的元素交换
+        char temp = arr[Index];
+        arr[Index] = arr[arr.length-1];
+        arr[arr.length-1] = temp;
+        //重新变为字符串并且返回
+        return new String(arr);
+    }
+    //校验用户名和密码
+    public static boolean checkInfo(ArrayList<User> list,User InfoUser){
+        //遍历集合，判断用户名是否存在
+        int Index = checkIndex(list,InfoUser.getUsername());
+        if (Index == -1){
+            //用户名不存在
+            return false;
+        }else {
+            User user = list.get(Index);
+            return InfoUser.getPassword().equals(user.getPassword());
+        }
+    }
+    //校验用户的身份证号码和手机号码
+    public static boolean CheckInfo(ArrayList<User> list,User InfoUser,int index){
+        User user = list.get(index);
+        if (user.getPersonId().equals(InfoUser.getPersonId())){
+            return user.getPhoneNumber().equals(InfoUser.getPhoneNumber());
+        }else {
+            return false;
+        }
+    }
+    //修改密码
+    public static void changeDate(ArrayList<User> list,int index,String change){
+        User user = list.get(index);
+        user.setPassword(change);
+        System.out.println("修改数据成功");
+    }
+}
+
 ```
 
