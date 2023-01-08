@@ -1,4 +1,4 @@
-# Java基础
+# Java
 
 ## Hello World
 
@@ -5299,13 +5299,1055 @@ public class Demo {
 }
 ```
 
+## 多态
+
+同类型的对象,表现出的不同形态
+
+### 多态的表现形式
+
+```java
+父类类型 对象名称 = 子类对象;
+```
+
+### 多态的前提
+
+- 有继承关系
+- 有父类引用指向子类对象
+- 有方法重写
+
+### 多态的优点
+
+**使用父类作为参数,可以接收所有子类对象,体现多态的扩展性与遍历**
+
+### 多态调用成员的特点
+
+- 变量调用 : 编译看左边,运行也看左边
+
+> 编译看左边：javac编译代码的时候，会看左边的父类中有没有这个变量，如果有，编译成功，如果没有编译失败
+>
+> 运行也看左边： java运行代码的时候，实际获取的就是左边父类成员变量的值
+>
+> 成员变量理解: 在子类对象中,会把父类的成员变量也继承下来,父: name 子:name
+
+- 方法调用 : 编译看左边,运行看右边
+
+>编译看左边： javac编译代码的时候，会看左边的父类中有没有这个方法，如果有，编译成功，如果没有，编译失败
+>运行看右边： java运行的时候，实际商运行的是子类中的方法
+>
+>成员方法理解: 如果子类对方法进行了重写,那么在虚方法表中是会把父类的方法进行覆盖
+
+### 多态的弊端
+
+**不能调用子类的特有功能**
+
+原因: 当调用成员方法的时候,编译看左边,运行看右边,那么在编译的时候会先检查左边的父类中有没有这个方法,如果没有直接报错.
+
+解决方案: 强制转换成子类类型
+
+```java
+Zi 新对象名称 = (Zi)对象名称;
+```
+
+#### instanceof 类型判断
+
+```
+对象名称 instanceof 类名
+```
+
+#### 新特性
+
+将强制转换和判断合二为一
+
+```java
+if (对象名称 instanceof 需要判断类名 新对象名称){
+  
+}else if (对象名称 instanceof 需要判断类名 新对象名称){
+  
+}else{
+  sout("没有这个类型,无法转换")
+}
+```
+
+#### 强制类型转换能解决的问题
+
+- 可以转换成真正的子类类型,从而调用子类独有的功能
+- 转换类型与真实对象类型不一致会报错
+- 转换的时候用instanceof关键字进行判断
+
+### 练习
+
+>根据需求完成代码:
+>
+>1.定义狗类
+>		属性：
+>			年龄，颜色
+>		行为:
+>			eat(String something)(something表示吃的东西)
+>			看家lookHome方法(无参数)
+>
+>2.定义猫类
+>	属性：
+>		年龄，颜色
+>	行为:
+>		eat(String something)方法(something表示吃的东西)
+>		逮老鼠catchMouse方法(无参数)
+>
+>3.定义Person类//饲养员
+>	属性：
+>		姓名，年龄
+>	行为：
+>		keepPet(Dog dog,String something)方法
+>			功能：喂养宠物狗，something表示喂养的东西
+>	行为：
+>		keepPet(Cat cat,String something)方法
+>			功能：喂养宠物猫，something表示喂养的东西
+>	生成空参有参构造，set和get方法  
+>4.定义测试类(完成以下打印效果):
+>	keepPet(Dog dog,String somethind)方法打印内容如下：
+>		年龄为30岁的老王养了一只黑颜色的2岁的狗
+>		2岁的黑颜色的狗两只前腿死死的抱住骨头猛吃
+>	keepPet(Cat cat,String somethind)方法打印内容如下：
+>		年龄为25岁的老李养了一只灰颜色的3岁的猫
+>		3岁的灰颜色的猫眯着眼睛侧着头吃鱼
+
+```java
+public class Test2 {
+    /*
+    * 根据需求完成代码:
+	1.定义狗类
+		属性：
+			年龄，颜色
+		行为:
+			eat(String something)(something表示吃的东西)
+			看家lookHome方法(无参数)
+
+	2.定义猫类
+		属性：
+			年龄，颜色
+		行为:
+			eat(String something)方法(something表示吃的东西)
+			逮老鼠catchMouse方法(无参数)
+
+	3.定义Person类//饲养员
+		属性：
+			姓名，年龄
+		行为：
+			keepPet(Dog dog,String something)方法
+				功能：喂养宠物狗，something表示喂养的东西
+		行为：
+			keepPet(Cat cat,String something)方法
+				功能：喂养宠物猫，something表示喂养的东西
+		生成空参有参构造，set和get方法
+	4.定义测试类(完成以下打印效果):
+		keepPet(Dog dog,String somethind)方法打印内容如下：
+			年龄为30岁的老王养了一只黑颜色的2岁的狗
+			2岁的黑颜色的狗两只前腿死死的抱住骨头猛吃
+		keepPet(Cat cat,String somethind)方法打印内容如下：
+			年龄为25岁的老李养了一只灰颜色的3岁的猫
+			3岁的灰颜色的猫眯着眼睛侧着头吃鱼
+    * */
+    public static void main(String[] args) {
+        Persons person = new Persons("老王",30);
+        Dogs dogs =new Dogs(2,"黑");
+        person.keepPet(dogs,"骨头");
+
+        Persons persons2 = new Persons("老王",25);
+        Cats cats = new Cats(3,"灰");
+        persons2.keepPet(cats,"鱼");
+    }
+}
+class Animals{
+    //属性：
+    //			年龄，颜色
+    //		行为:
+    //			eat(String something)(something表示吃的东西)
+    private int age;
+    private String color;
+
+    public Animals() {
+    }
+
+    public Animals(int age, String color) {
+        this.age = age;
+        this.color = color;
+    }
+
+    /**
+     * 获取
+     * @return age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * 设置
+     * @param age
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * 获取
+     * @return color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * 设置
+     * @param color
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public void eat(String something){
+        System.out.println("动作在吃"+something);
+    }
+}
+class Dogs extends Animals{
+    //1.定义狗类
+    //		属性：
+    //			年龄，颜色
+    //		行为:
+    //			eat(String something)(something表示吃的东西)
+    //			看家lookHome方法(无参数)
+    public Dogs(){}
+    public Dogs(int age,String color){
+        super(age,color);
+    }
+    //行为
+    @Override
+    public void eat(String something){
+        System.out.println(getAge()+"岁的"+getColor()+"颜色的狗两只前腿死死的抱住"+something+"猛吃");
+    }
+
+    public void lookHome(){
+        System.out.println("狗在看家");
+    }
+}
+class Cats extends Animals{
+    public Cats(){
+    }
+    public Cats(int age,String color){
+        super(age, color);
+    }
+
+    @Override
+    public void eat(String something){
+        System.out.println(getAge()+"岁的"+getColor()+"颜色的猫眯着眼睛侧着头吃"+something);
+    }
+
+    public void catchMouse(){
+        System.out.println("抓老鼠");
+    }
+}
+class Persons{
+    //定义Person类//饲养员
+    //		属性：
+    //			姓名，年龄
+    //		行为：
+    //			keepPet(Dog dog,String something)方法
+    //				功能：喂养宠物狗，something表示喂养的东西
+    //		行为：
+    //			keepPet(Cat cat,String something)方法
+    //				功能：喂养宠物猫，something表示喂养的东西
+    //		生成空参有参构造，set和get方法
+    private String name;
+    private int age;
+
+    public Persons() {
+    }
+
+    public Persons(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    /**
+     * 获取
+     * @return name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 获取
+     * @return age
+     */
+    public int getAge() {
+        return age;
+    }
+
+    /**
+     * 设置
+     * @param age
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+    public void keepPet(Animals animals,String something){
+        String an = "";
+        if (animals instanceof Dogs){
+            an = "狗";
+        } else if (animals instanceof Cats) {
+            an = "猫";
+        }
+        System.out.println("年龄为"+age+"岁的"+name+"养了一只"+animals.getColor()+"颜色的"+animals.getAge()+"岁的"+an);
+        animals.eat(something);
+    }
+}
+
+```
+
+## 使用其他类的规则
+
+- 使用同一个包中的类时,不需要导包
+- 使用java.lang包中的类时,不需要导包
+- 其他情况都需要导包
+- 如果同时使用两个包中的同名类,需要用全类名
+
+## final 修饰词
+
+方法 : 表明该方法是最终方法,**不能被重写**
+
+类 : 表明该类是最终类,**不能被继承**
+
+变量 : 叫做**常量**,只能被赋值一次
+
+### 常量
+
+命名规范:
+
+- 单个单词 : 全部大写
+- 多个单词 : 全部大写,单词之间用下划线隔开
+
+细节:
+
+final修饰的变量是基本类型:那么变量存储的**数据值**不能发生改变.
+
+final修饰的变量是引用类型:那么变量存储的**地址值**不能发生改变,对象内部的可以改变
+
+## 权限修饰符
+
+- 权限修饰符:用来控制一个成员能够被访问的范围
+- 可以修饰成员变量,方法,构造方法,内部类
+
+### 权限修饰符的分类
+
+作用范围从大到小(private < 空着不写(默认) < protected < public)
+
+|  修饰符   | 同一个类中 | 同一个包中其他类 | 不同包下的子类 | 不同包下的无关类 |
+| :-------: | :--------: | :--------------: | :------------: | :--------------: |
+|  private  |    可以    |                  |                |                  |
+| 空着不写  |    可以    |       可以       |                |                  |
+| protected |    可以    |       可以       |      可以      |                  |
+|  public   |    可以    |       可以       |      可以      |       可以       |
+
+### 使用规则
+
+一般使用private和public
+
+- 成员变量私有
+
+- 方法公开
+
+  特性 : 如果方法中的代码是抽取其他方法中共性代码,这个方法一般也私有
+
+## 代码块
+
+- 局部代码块
+- 构造代码块
+- 静态代码块
+
+### 局部代码块
+
+使用{}包裹代码,提前结束
+
+### 构造代码块
+
+写在成员位置的代码块,用{}包裹
+
+作用: 可以把多个构造方法中重复的代码抽取出来,我们在创建本类对象的时候会先执行构造代码块,再执行构造方法
+
+### 静态代码块
+
+格式: static{}
+
+特点: 需要通过static关键字修饰,随着类的加载而加载,并且自动触发,**只执行一次**
+
+使用场景: 在类加载的时候,做一些数据初始化的时候使用
+
+## 抽象类
+
+### 抽象方法
+
+- 抽象方法 : 将**共性**的行为(方法)抽取到父类之后.由于每一个子类执行的内容是不一样,所以,在父类中不能确定具体的方法体.该方法就可以定义为抽象方法
+- 抽象类 : 如果一个**类中存在抽象方法**,那么该类就**必须声明为抽象类**
+
+### 抽象类和抽象方法的定义格式
+
+- 抽象方法的定义格式
+
+`public abstract 返回值类型 方法名(参数列表);`
+
+- 抽象类的定义格式
+
+`public abstract class 类名{}`
+
+### 注意事项
+
+- **抽象类不能创建对象**
+- 抽象类中不一定有抽象方法,有抽象方法的类一定是抽象类
+- 可以有构造方法
+- 抽象类的子类要么重写抽象类中的所有抽象方法,要么是抽象类
+
+## 接口(定义规则)
+
+### 接口的定义和使用
+
+- 接口用关键词interface来定义
+
+  `public interface 接口名{}`
+
+- **接口不能创建对象**
+
+- 接口和类之间是实现关系,通过implements关键词表示
+
+  `public class 类名 implements 接口名{}`
+
+- 接口的子类(实现类)
+
+  要么重写接口中的所有抽象方法
+
+  要么是抽象类
+
+> 1.接口和类的实现关系,可以是单实现,也可以是多实现
+>
+> `public class 类名 implements 接口1,接口2{}`
+>
+> 2.实现类还可以在继承一个类的同时实现多个接口
+>
+> `public class 类名 extends 父类 implements 接口1,接口2{}`
+
+**当一个方法的参数是接口时,可以传递接口所有实现类的对象,这种方式称之为接口多态**
+
+### 接口中成员的特点
+
+#### 成员变量
+
+只能是常量
+
+默认修饰符 : public static final
+
+#### 构造方法
+
+没有
+
+#### 成员方法
+
+抽象方法 ,默认修饰符: public abstract
+
+定义有方法体的方法和定义私有方法
+
+### 接口和类之间的关系
+
+#### 类和类的关系
+
+继承关系,只能单继承,不能多继承,但是可以多层继承
+
+#### 类和接口的关系
+
+实现关系,可以单实现,也可以多实现,还可以在继承一个类的同时实现多个接口
+
+多个接口有重名的方法只需要重写一次就行
+
+假如我们定义一个运动员的**接口**（规范），代码如下：
+
+```java
+/**
+   接口：接口体现的是规范。
+ * */
+public interface SportMan {
+    void run(); // 抽象方法，跑步。
+    void law(); // 抽象方法，遵守法律。
+    String compittion(String project);  // 抽象方法，比赛。
+}
+```
+
+接下来定义一个乒乓球运动员类，实现接口，实现接口的**实现类**代码如下：
+
+```java
+package com.itheima._03接口的实现;
+/**
+ * 接口的实现：
+ *    在Java中接口是被实现的，实现接口的类称为实现类。
+ *    实现类的格式:
+ *      class 类名 implements 接口1,接口2,接口3...{
+ *
+ *
+ *      }
+ * */
+public class PingPongMan  implements SportMan {
+    @Override
+    public void run() {
+        System.out.println("乒乓球运动员稍微跑一下！！");
+    }
+
+    @Override
+    public void law() {
+        System.out.println("乒乓球运动员守法！");
+    }
+
+    @Override
+    public String compittion(String project) {
+        return "参加"+project+"得金牌！";
+    }
+}
+```
+
+**测试代码**：
+
+```java
+public class TestMain {
+    public static void main(String[] args) {
+        // 创建实现类对象。
+        PingPongMan zjk = new PingPongMan();
+        zjk.run();
+        zjk.law();
+        System.out.println(zjk.compittion("全球乒乓球比赛"));
+
+    }
+}
+```
+
+**类与接口之间的关系是多实现的，一个类可以同时实现多个接口。**
+
+首先我们先定义两个接口，代码如下：
+
+```java
+/** 法律规范：接口*/
+public interface Law {
+    void rule();
+}
+
+/** 这一个运动员的规范：接口*/
+public interface SportMan {
+    void run();
+}
+
+```
+
+然后定义一个实现类：
+
+```java
+/**
+ * Java中接口是可以被多实现的：
+ *    一个类可以实现多个接口: Law, SportMan
+ *
+ * */
+public class JumpMan implements Law ,SportMan {
+    @Override
+    public void rule() {
+        System.out.println("尊长守法");
+    }
+
+    @Override
+    public void run() {
+        System.out.println("训练跑步！");
+    }
+}
+```
+
+#### 接口和接口的关系
+
+继承关系,可以单继承,也可以多继承
+
+案例演示：
+
+```java 
+public interface Abc {
+    void go();
+    void test();
+}
+
+/** 法律规范：接口*/
+public interface Law {
+    void rule();
+    void test();
+}
+
+ *
+ *  总结：
+ *     接口与类之间是多实现的。
+ *     接口与接口之间是多继承的。
+ * */
+public interface SportMan extends Law , Abc {
+    void run();
+}
+```
+
+### JDK8和JDK9开始,接口新增的方法
+
+接口中可以定义有方法体的方法(默认,静态)
+
+接口中可以定义私有方法
+
+#### 接口中默认方法的定义格式
+
+```java
+public default 返回值类型 方法名(参数列表){}
+public default void show(){}
+```
+
+##### 注意事项
+
+- 默认方法不是抽象方法,所以不强制重写,重写的时候去掉default关键词
+- public可以省略,defualt不能省略
+- 如果实现了多个接口,多个接口中存在相同名字的默认方法,子类就必须对该方法进行重写
+
+#### 接口中静态方法的定义格式
+
+```java
+public static 返回值类型 方法名(参数列表){}
+public static void show(){}
+```
+
+##### 注意事项
+
+- 静态方法只能通过接口名调用,不能通过实现类名或者对象名调用
+- public可以省略,static不能省略
+
+### 私有方法定义格式
+
+```java
+//普通私有方法服务默认方法
+private 返回值类型 方法名(参数类别){}
+private void show(){}
+
+//静态私有方法服务静态方法
+private static 返回值类型 方法名(){}
+private static void show(){}
+```
+
+## 适配器设计模式
+
+当一个接口中抽象方法过多,但是只要使用其中一部分的时候,就可以适配器设计模式
+
+### 书写步骤
+
+编写中间类XXXAdapeter,实现对应的接口
+
+对接口中的抽象方法进行空实现
+
+让真正的实现类继承中间类,并重写所需要的方法
+
+为了避免其他类创建适配器类的对象,中间的适配器类用abstract进行修饰
+
+## 内部类
+
+类的五大成员:属性,构造方法,代码块,内部类
+
+**在一个类的里面,再定义一个类**
+
+例如:在A类的内部定义B类,B类就被称为内部类
+
+```java
+public class Outer{//外部类
+  public class Inner{//内部类
+    
+  }
+}
+```
+
+内部类表示的事物是外部类的一部分
+
+内部类单独出现没有任何意义
+
+**内部类的访问特点**
+
+- 内部类可以直接访问外部类的成员,包括私有
+- 外部类要访问内部类的成员,必须创建对象
+
+### 内部类的分类
+
+按定义的位置来分
+
+1. **成员内部内**，类定义在了成员位置 (类中方法外称为成员位置，无static修饰的内部类)
+2. **静态内部类**，类定义在了成员位置 (类中方法外称为成员位置，有static修饰的内部类)
+3. **局部内部类**，类定义在方法内
+4. **匿名内部类**，没有名字的内部类，可以在方法中，也可以在类中方法外。
+
+### 成员内部类
+
+**成员内部类特点**：
+
+- 无static修饰的内部类，属于外部类对象的。
+- 宿主：外部类对象。
+
+**内部类的使用格式**：
+
+```java
+ 外部类.内部类 // 访问内部类的类型都是用 外部类.内部类
+```
+
+**获取成员内部类对象的两种方式**：
+
+方式一：外部直接创建成员内部类的对象
+
+```java
+外部类.内部类 变量 = new 外部类（）.new 内部类（）;
+```
+
+方式二：在外部类中定义一个方法提供内部类的对象
+
+**案例演示**
+
+```java
+方式一：
+public class Test {
+    public static void main(String[] args) {
+        //  宿主：外部类对象。
+       // Outer out = new Outer();
+        // 创建内部类对象。
+        Outer.Inner oi = new Outer().new Inner();
+        oi.method();
+    }
+}
+
+class Outer {
+    // 成员内部类，属于外部类对象的。
+    // 拓展：成员内部类不能定义静态成员。
+    public class Inner{
+        // 这里面的东西与类是完全一样的。
+        public void method(){
+            System.out.println("内部类中的方法被调用了");
+        }
+    }
+}
 
 
+方式二：
+public class Outer {
+    String name;
+    private class Inner{
+        static int a = 10;
+    }
+    public Inner getInstance(){
+        return new Inner();
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        Outer o = new Outer();
+        System.out.println(o.getInstance());
 
 
+    }
+}
+```
 
+#### 成员内部类的细节
 
+编写成员内部类的注意点：
 
+1. 成员内部类可以被一些修饰符所修饰，比如： private，默认，protected，public，static等
+2. 在成员内部类里面，JDK16之前不能定义静态变量，JDK16开始才可以定义静态变量。
+3. **创建内部类对象时，对象中有一个隐含的Outer.this记录外部类对象的地址值**。
 
+详解：
 
+​	内部类被private修饰，外界无法直接获取内部类的对象，只能通过方式二获取内部类的对象
 
+​	被其他权限修饰符修饰的内部类一般用方式一直接获取内部类的对象
+
+​	内部类被static修饰是成员内部类中的特殊情况，叫做静态内部类下面单独学习。
+
+​	内部类如果想要访问外部类的成员变量，外部类的变量必须用final修饰，JDK8以前必须手动写final，JDK8之后不需要手动写，JDK默认加上。
+
+#### 成员内部类面试题
+
+请在?地方向上相应代码,以达到输出的内容
+
+注意：内部类访问外部类对象的格式是：**外部类名.this**
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        Outer.inner oi = new Outer().new inner();
+        oi.method();
+    }
+}
+
+class Outer {	// 外部类
+    private int a = 30;
+
+    // 在成员位置定义一个类
+    class inner {
+        private int a = 20;
+
+        public void method() {
+            int a = 10;
+            System.out.println(???);	// 10   答案：a
+            System.out.println(???);	// 20	答案：this.a
+            System.out.println(???);	// 30	答案：Outer.this.a
+        }
+    }
+}
+```
+
+### 静态内部类
+
+**静态内部类特点**：
+
+* 静态内部类是一种特殊的成员内部类。
+
+- 有static修饰，属于外部类本身的。
+- 总结：静态内部类与其他类的用法完全一样。只是访问的时候需要加上外部类.内部类。
+- **拓展1**:静态内部类可以直接访问外部类的静态成员。
+- **拓展2**:静态内部类不可以直接访问外部类的非静态成员，如果要访问需要创建外部类的对象。
+- **拓展3**:静态内部类中没有Outer.this。
+
+**内部类的使用格式**：
+
+```
+外部类.内部类
+```
+
+**静态内部类对象的创建格式**：
+
+```java
+外部类.内部类  变量 = new  外部类.内部类构造器;
+```
+
+**调用方法的格式：**
+
+* 调用非静态方法的格式：先创建对象，用对象调用
+* 调用静态方法的格式：外部类名.内部类名.方法名();
+
+**案例演示**：
+
+```java
+// 外部类：Outer01
+class Outer01{
+    private static  String sc_name = "程序";
+    // 内部类: Inner01
+    public static class Inner01{
+        // 这里面的东西与类是完全一样的。
+        private String name;
+        public Inner01(String name) {
+            this.name = name;
+        }
+        public void showName(){
+            System.out.println(this.name);
+            // 拓展:静态内部类可以直接访问外部类的静态成员。
+            System.out.println(sc_name);
+        }
+    }
+}
+
+public class InnerClassDemo01 {
+    public static void main(String[] args) {
+        // 创建静态内部类对象。
+        // 外部类.内部类  变量 = new  外部类.内部类构造器;
+        Outer01.Inner01 in  = new Outer01.Inner01("张三");
+        in.showName();
+    }
+}
+```
+
+### 局部内部类
+
+- **局部内部类** ：定义在**方法中**的类。
+
+定义格式:
+
+```java
+class 外部类名 {
+	数据类型 变量名;
+	
+	修饰符 返回值类型 方法名(参数列表) {
+		// …
+		class 内部类 {
+			// 成员变量
+			// 成员方法
+		}
+	}
+}
+```
+
+### 匿名内部类【重点】
+
+#### 概述
+
+**匿名内部类** ：是内部类的简化写法。他是一个隐含了名字的内部类。开发中，最常用到的内部类就是匿名内部类了。
+
+#### 格式
+
+```java
+new 类名或者接口名() {
+     重写方法;
+};
+```
+
+包含了：
+
+* **继承或者实现关系**
+
+* 方法重写
+* 创建对象
+
+所以从语法上来讲，这个整体其实是匿名内部类对象
+
+#### 什么时候用到匿名内部类 
+
+**实际上，如果我们希望定义一个只要使用一次的类，就可考虑使用匿名内部类。匿名内部类的本质作用**
+
+**是为了简化代码**。 
+
+之前我们使用接口时，似乎得做如下几步操作：
+
+1. 定义子类
+2. 重写接口中的方法
+3. 创建子类对象
+4. 调用重写后的方法
+
+```java
+interface Swim {
+    public abstract void swimming();
+}
+
+// 1. 定义接口的实现类
+class Student implements Swim {
+    // 2. 重写抽象方法
+    @Override
+    public void swimming() {
+        System.out.println("狗刨式...");
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        // 3. 创建实现类对象
+        Student s = new Student();
+        // 4. 调用方法
+        s.swimming();
+    }
+}
+```
+
+我们的目的，最终只是为了调用方法，那么能不能简化一下，把以上四步合成一步呢？匿名内部类就是做这样的快捷方式。
+
+#### 匿名内部类前提和格式
+
+匿名内部类必须**继承一个父类**或者**实现一个父接口**。
+
+**匿名内部类格式**
+
+```java
+new 父类名或者接口名(){
+    // 方法重写
+    @Override 
+    public void method() {
+        // 执行语句
+    }
+};
+```
+
+#### 使用方式
+
+以接口为例，匿名内部类的使用，代码如下：
+
+```java
+interface Swim {
+    public abstract void swimming();
+}
+
+public class Demo07 {
+    public static void main(String[] args) {
+        // 使用匿名内部类
+		new Swim() {
+			@Override
+			public void swimming() {
+				System.out.println("自由泳...");
+			}
+		}.swimming();
+
+        // 接口 变量 = new 实现类(); // 多态,走子类的重写方法
+        Swim s2 = new Swim() {
+            @Override
+            public void swimming() {
+                System.out.println("蛙泳...");
+            }
+        };
+
+        s2.swimming();
+        s2.swimming();
+    }
+}
+```
+
+#### 匿名内部类的特点
+
+1. 定义一个没有名字的内部类
+2. 这个类实现了父类，或者父类接口
+3. 匿名内部类会创建这个没有名字的类的对象
+
+#### 匿名内部类的使用场景
+
+通常在方法的形式参数是接口或者抽象类时，也可以将匿名内部类作为参数传递。代码如下：
+
+```java
+interface Swim {
+    public abstract void swimming();
+}
+
+public class Demo07 {
+    public static void main(String[] args) {
+        // 普通方式传入对象
+        // 创建实现类对象
+        Student s = new Student();
+        
+        goSwimming(s);
+        // 匿名内部类使用场景:作为方法参数传递
+        Swim s3 = new Swim() {
+            @Override
+            public void swimming() {
+                System.out.println("蝶泳...");
+            }
+        };
+        // 传入匿名内部类
+        goSwimming(s3);
+
+        // 完美方案: 一步到位
+        goSwimming(new Swim() {
+            public void swimming() {
+                System.out.println("大学生, 蛙泳...");
+            }
+        });
+
+        goSwimming(new Swim() {
+            public void swimming() {
+                System.out.println("小学生, 自由泳...");
+            }
+        });
+    }
+
+    // 定义一个方法,模拟请一些人去游泳
+    public static void goSwimming(Swim s) {
+        s.swimming();
+    }
+}
+```
