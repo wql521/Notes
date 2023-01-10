@@ -1,0 +1,154 @@
+{
+  "main": {
+    "id": "29a56c82d5d527c9",
+    "type": "split",
+    "children": [
+      {
+        "id": "0658511cc7db9c6a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1f22f46967ee66f",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b6dffe9220b9a5fe",
+    "type": "split",
+    "children": [
+      {
+        "id": "2eab239b49daba19",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "76863cd486298075",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "38eb3024043ee92c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "02983fbef1b6c0aa",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "3136029ea2b9c76d",
+    "type": "split",
+    "children": [
+      {
+        "id": "f4651bbeb4e22632",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1ab683a028f2444b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2f15a7c914faa678",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c4a8e3efaa64799c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "017c11e8d3475407",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "b1f22f46967ee66f",
+  "lastOpenFiles": [
+    "未命名.md",
+    "微信小程序/生命周期.pdf",
+    "青年志愿者协会/行政部第二次例会.md",
+    "青年志愿者协会/你从未离去.md",
+    "青年志愿者协会/行政部第三次例会.md",
+    "Java/拼图游戏.md",
+    "Java/java.md",
+    "青年志愿者协会/招新活动,吸取经验.md",
+    "未命名.canvas"
+  ]
+}
