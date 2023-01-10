@@ -1,6 +1,6 @@
 {
   "commitMessage": "王钱龙: {{date}}",
-  "autoCommitMessage": "vault backup: {{date}}",
+  "autoCommitMessage": "王钱龙: {{date}}",
   "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
   "autoSaveInterval": 30,
   "autoPushInterval": 0,

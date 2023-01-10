@@ -3,5 +3,6 @@
   "buttons",
   "calendar",
   "obsidian-git",
-  "cm-editor-syntax-highlight-obsidian"
+  "cm-editor-syntax-highlight-obsidian",
+  "cmenu-plugin"
 ]

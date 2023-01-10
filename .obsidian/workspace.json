@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0658511cc7db9c6a",
+        "id": "1340856b5336256f",
         "type": "tabs",
         "children": [
           {
-            "id": "b1f22f46967ee66f",
+            "id": "db885e8efcf24cba",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3136029ea2b9c76d",
@@ -146,7 +147,7 @@
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -164,17 +165,17 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b1f22f46967ee66f",
+  "active": "db885e8efcf24cba",
   "lastOpenFiles": [
+    "Java/常用API.md",
+    "Users/wangqianlong/Downloads/NOTE20221007225624.png.md",
+    "青年志愿者协会/行政部第一次例会.md",
+    "未命名.canvas",
+    "2023-01-10.md",
+    "Java/java.md",
+    "Java/拼图游戏.md",
     "Markdown 语法.md",
     "README.md",
-    "Java/java.md",
-    "Mysql/MYSQL数据库操作.md",
-    "Java/拼图游戏.md",
-    "Javascript.md",
-    "未命名.md",
-    "微信小程序/生命周期.pdf",
-    "青年志愿者协会/行政部第二次例会.md",
-    "青年志愿者协会/你从未离去.md"
+    "Mysql/MYSQL数据库操作.md"
   ]
 }
