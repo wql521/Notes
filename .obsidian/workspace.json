@@ -131,14 +131,6 @@
             }
           },
           {
-            "id": "22f637ef3ee8b32d",
-            "type": "leaf",
-            "state": {
-              "type": "advanced-tables-toolbar",
-              "state": {}
-            }
-          },
-          {
             "id": "1502d2829d3c41d4",
             "type": "leaf",
             "state": {
@@ -162,14 +154,13 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "table-editor-obsidian:Advanced Tables Toolbar": true,
       "markdown-table-editor:Open Markdown Table Editor": false
     }
   },
   "active": "45b377341ad15dd9",
   "lastOpenFiles": [
-    "Java/java.md",
     "Java/常用API.md",
+    "Java/java.md",
     "未命名.canvas",
     "2023-01-10.md",
     "Java/拼图游戏.md",

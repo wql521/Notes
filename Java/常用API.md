@@ -14,3 +14,17 @@
 |  public static double  pow(double a,double b)  |           返回a的b次幂的值                |
 |  public static double  random()                |  返回为double的随机值,范围[0.0,1.0)         |  
 
+### System
+System是一个工具类,提供了一些与系统相关的方法
+#### 计算机的时间原点
+**1970年1月1日  00:00:00**
+中国从计算机获取到的时间是**1970年1月1日  08:00:00**
+#### 常用方法
+| 方法名                                                                           | 说明                         |
+|:-------------------------------------------------------------------------------- |:---------------------------- |
+| `public static void exit(int status)`                                            | 终止当前的java虚拟机         |
+| `public static long currentTimeMillis()`                                         | 返回当前系统的时间毫秒值形式 |
+| `public static void arraycopy(数据源数组,起始索引,目的地数组,起始索引,拷贝个数)` | 数组拷贝                     |
+终止虚拟机:
+0:表示当前虚拟机是正常停止
+非0:表示当前虚拟机异常停止
