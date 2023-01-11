@@ -1,13 +1,34 @@
 {
+  "communityPluginSortOrder": "release",
+  "readableLineLength": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "alwaysUpdateLinks": true,
+  "legacyEditor": false,
+  "livePreview": true,
+  "showFrontmatter": false,
+  "spellcheck": false,
+  "spellcheckLanguages": [],
+  "attachmentFolderPath": "99-Attachment",
+  "showLineNumber": true,
+  "defaultViewMode": "source",
+  "showUnsupportedFiles": true,
+  "strictLineBreaks": false,
+  "tabSize": 4,
+  "fileSortOrder": "alphabetical",
+  "useTab": true,
+  "smartIndentList": true,
   "pdfExportSettings": {
-    "includeName": true,
     "pageSize": "A4",
     "landscape": false,
-    "margin": "0",
+    "margin": "2",
     "downscalePercent": 100
   },
-  "livePreview": true,
-  "promptDelete": false,
-  "showLineNumber": true,
-  "strictLineBreaks": true
+  "lineWrap": true,
+  "autoPairMarkdown": false,
+  "showIndentGuide": true,
+  "userIgnoreFilters": [
+    "88-Template/"
+  ],
+  "trashOption": "system"
 }

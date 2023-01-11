@@ -1,20 +1,21 @@
 {
   "main": {
-    "id": "29a56c82d5d527c9",
+    "id": "e8b4ea94b39a8520",
     "type": "split",
     "children": [
       {
-        "id": "46ff599e1a50b2e5",
+        "id": "61414ec65fcc9924",
         "type": "tabs",
         "children": [
           {
-            "id": "336f2c7841cbea1b",
+            "id": "80430a4f104c0c57",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Java/正则表达式.md",
-                "mode": "preview",
+                "file": "77-Example/表格自定义样式.md",
+                "mode": "source",
+                "backlinks": false,
                 "source": false
               }
             }
@@ -25,15 +26,16 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "b6dffe9220b9a5fe",
+    "id": "687357708cbc920f",
     "type": "split",
     "children": [
       {
-        "id": "2eab239b49daba19",
+        "id": "4bc1edcafd063cfb",
         "type": "tabs",
+        "dimension": 68.13048933500627,
         "children": [
           {
-            "id": "76863cd486298075",
+            "id": "37c8f55a8ef7a09c",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -43,7 +45,7 @@
             }
           },
           {
-            "id": "38eb3024043ee92c",
+            "id": "b3290ae399933a0b",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -58,10 +60,42 @@
             }
           },
           {
-            "id": "02983fbef1b6c0aa",
+            "id": "3d21402f76dc34c3",
             "type": "leaf",
             "state": {
               "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "f2c2f4dfc8473d58",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 3
+      },
+      {
+        "id": "d877e8285f98a38a",
+        "type": "tabs",
+        "dimension": 31.869510664993726,
+        "children": [
+          {
+            "id": "b37bc3d287f74512",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          },
+          {
+            "id": "5ee52b332527fc75",
+            "type": "leaf",
+            "state": {
+              "type": "memos_view",
               "state": {}
             }
           }
@@ -69,26 +103,66 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 255
   },
   "right": {
-    "id": "3136029ea2b9c76d",
+    "id": "4e390742ffc29613",
     "type": "split",
     "children": [
       {
-        "id": "f4651bbeb4e22632",
+        "id": "d4c25b22f0c7d5f0",
         "type": "tabs",
+        "dimension": 36.340852130325814,
         "children": [
           {
-            "id": "1ab683a028f2444b",
+            "id": "ca4e910af4602420",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          },
+          {
+            "id": "340969ccd24905e8",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "77-Example/表格自定义样式.md"
+              }
+            }
+          },
+          {
+            "id": "83061aceea29f566",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "88-Template/彩色时钟.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": true
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      },
+      {
+        "id": "0b3485207df574dd",
+        "type": "tabs",
+        "dimension": 63.65914786967418,
+        "children": [
+          {
+            "id": "041c78328387b373",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Java/正则表达式.md",
-                "collapseAll": false,
-                "extraContext": false,
-                "sortOrder": "alphabetical",
+                "file": "77-Example/表格自定义样式.md",
+                "collapseAll": true,
+                "extraContext": true,
+                "sortOrder": "byModifiedTime",
                 "showSearch": false,
                 "searchQuery": "",
                 "backlinkCollapsed": false,
@@ -97,19 +171,19 @@
             }
           },
           {
-            "id": "2f15a7c914faa678",
+            "id": "dc4a81bfd6624166",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Java/正则表达式.md",
+                "file": "77-Example/表格自定义样式.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "c4a8e3efaa64799c",
+            "id": "b2ae90cb6049dbe9",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -120,20 +194,23 @@
             }
           },
           {
-            "id": "017c11e8d3475407",
+            "id": "8851ccb0aa4e524a",
             "type": "leaf",
             "state": {
-              "type": "outline",
+              "type": "markdown",
               "state": {
-                "file": "Java/正则表达式.md"
+                "file": "88-Template/常用工具.md",
+                "mode": "preview",
+                "backlinks": true,
+                "source": false
               }
             }
           },
           {
-            "id": "1502d2829d3c41d4",
+            "id": "4f457051e10f1a14",
             "type": "leaf",
             "state": {
-              "type": "calendar",
+              "type": "quiet-outline",
               "state": {}
             }
           }
@@ -142,30 +219,38 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 265
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-weread-plugin:Weread": false,
+      "omnisearch:Omnisearch": false,
+      "homepage:Open homepage": false,
+      "periodic-notes:Open today's daily note": false,
+      "templater-obsidian:Templater": false,
+      "markdown-importer:打开 Markdown 格式转换器": false,
+      "workspaces:管理工作区布局": false,
+      "markdown-table-editor:Open Markdown Table Editor": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:Create new canvas": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "markdown-table-editor:Open Markdown Table Editor": false
+      "obsidian-memos:Memos": false
     }
   },
-  "active": "336f2c7841cbea1b",
+  "active": "80430a4f104c0c57",
   "lastOpenFiles": [
-    "Java/常用API.md",
-    "Java/正则表达式.md",
-    "未命名.canvas",
-    "2023-01-11.md",
-    "Java/java.md",
-    "2023-01-10.md",
-    "Java/拼图游戏.md",
-    "Users/wangqianlong/Downloads/NOTE20221007225624.png.md",
-    "青年志愿者协会/行政部第一次例会.md",
-    "Markdown 语法.md"
+    "77-Example/涂黑和挖空效果（三种语法）.md",
+    "77-Example/全宽表格示例.md",
+    "77-Example/分栏效果示例.md",
+    "77-Example/MD表格悬浮编辑测试.md",
+    "77-Example/callout 便签效果.md",
+    "20-Diary/2022-01-09.md",
+    "00-Tips/示例库移植说明/示例库移植说明.md",
+    "00-Tips/示例库移植说明/如何把示例库移植到你现有的库中？.md",
+    "30-Reading/雄狮少年.md",
+    "77-Example/◾ Dataview相关实例/电影看板.md"
   ]
 }
