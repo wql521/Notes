@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2a9da4478b28ae00",
+        "id": "46ff599e1a50b2e5",
         "type": "tabs",
         "children": [
           {
-            "id": "45b377341ad15dd9",
+            "id": "6e46db3286b39250",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -17,20 +17,6 @@
                 "mode": "source",
                 "source": false
               }
-            }
-          }
-        ]
-      },
-      {
-        "id": "ff9b6e12f2ddabc4",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "8d06b38fee88050a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown-table-editor-view",
-              "state": {}
             }
           }
         ]
@@ -62,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "重写",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -79,8 +65,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
@@ -171,17 +156,17 @@
       "markdown-table-editor:Open Markdown Table Editor": false
     }
   },
-  "active": "8d06b38fee88050a",
+  "active": "6e46db3286b39250",
   "lastOpenFiles": [
-    "Java/java.md",
-    "Java/常用API.md",
     "未命名.canvas",
+    "2023-01-11.md",
+    "Java/常用API.md",
+    "Java/java.md",
     "2023-01-10.md",
     "Java/拼图游戏.md",
     "Users/wangqianlong/Downloads/NOTE20221007225624.png.md",
     "青年志愿者协会/行政部第一次例会.md",
     "Markdown 语法.md",
-    "README.md",
-    "Mysql/MYSQL数据库操作.md"
+    "README.md"
   ]
 }
