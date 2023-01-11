@@ -63,9 +63,20 @@ Object类中的方法可以被所有子类访问,所以我们要学习Object类�
 | `public boolean equals(Object obj)` | 比较两个对象是否相等   |
 | `public Object clone(int a)`        | 对象克隆         |  
 
-toString方法:
+##### toString方法:
 如果打印一个对象,想要看到属性值的话,那么就**重写toString方法**
 在重写方法的时候,属性值进行拼接.
-equals方法:
+##### equals方法:
 如果没有重写equals方法,默认使用Object中的方法进行比较,比较的是地址值是否相等
 如果重写equals方法,重写之后比较对象内部的属性值
+##### 对象克隆:
+把A对象的属性值完全拷贝给B对象,也叫对象拷贝,对象复制
+方法在底层会帮我们创建一个对象,并且原对象中的数据拷贝过去
+细节:
+1. 重写Object中的clone方法(可以实现浅克隆和深克隆(采用第三方工具最好))
+2. 让javabean类实现Cloneable接口
+3. 创建元对象并调用clone接口
+>Cloneable接口
+>如果一个接口里面没有抽象方法
+>表示当前的接口是一个标记性接口
+>Cloneable表示一旦实现,那么当前类的对象就可以被克隆
