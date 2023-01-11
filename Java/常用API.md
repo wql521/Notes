@@ -42,3 +42,13 @@ System是一个工具类,提供了一些与系统相关的方法
 | `public long totalMemory()`           | JVM已经从系统中获取总内存大小(单位byte) |
 | `public long freeMemory()`            | JVM剩余内存大小(单位byte)        |
 | `public Process exec(String command)` | 运行cmd命令                  |  
+cmd:
+shutdown:关机
+加上参数才能执行:
+-s :默认在一分钟之后关机
+-s -t 指定时间: 指定关机时间
+-a :取消关机操作
+-r : 关机并且重启
+### Object
+Object是java中的顶级父类,所有的类都直接或间接的继承与Object类
+Object类中的方法可以被所有子类访问,所以我们要学习Object类和其中的方法
