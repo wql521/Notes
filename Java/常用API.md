@@ -235,6 +235,17 @@ public class BigIntegerDemo2 {
 
 ```
 ### BigDecimal
+- 用于小数的精确运算
+- 用来表示很大的小数
+#### 构造方法
+| 方法                                    | 说明                              |
+|:----------------------------------------|:--------------------------------|
+| `public BigDecimal(double val)`         | 通过传递double类型的小数来创建对象(可能不精确,不建议) |
+| `public BigDecimal(String val)`         | 通过传递String类型的小数来创建对象            |
+| `public BigDecimal valueOf(double val)` | 通过静态方法获取对象                      |  
+1. 如果要表示的数字不大,没有超过double的取值范围,使用静态方法更好
+2. 如果超过了double的取值范围,使用构造方法更好
+3. 如果我们传递的是0~10之间的整数,包含0和10,静态方法会返回已经创建好的对象,不会重新new
 #### 常用方法
 ```java
 public BigDecimal add(BigDecimal value)				// 加法运算
@@ -242,3 +253,126 @@ public BigDecimal subtract(BigDecimal value)		// 减法运算
 public BigDecimal multiply(BigDecimal value)		// 乘法运算
 public BigDecimal divide(BigDecimal value)			// 触发运算
 ```
+
+```java
+public class BigDecimalDemo01 {
+
+    public static void main(String[] args) {
+
+        // 创建两个BigDecimal对象
+        BigDecimal b1 = new BigDecimal("0.3") ;
+        BigDecimal b2 = new BigDecimal("4") ;
+
+        // 调用方法进行b1和b2的四则运算，并将其运算结果在控制台进行输出
+        System.out.println(b1.add(b2));         // 进行加法运算
+        System.out.println(b1.subtract(b2));    // 进行减法运算
+        System.out.println(b1.multiply(b2));    // 进行乘法运算
+        System.out.println(b1.divide(b2));      // 进行除法运算
+
+    }
+
+}
+```
+
+运行程序进行测试，控制台输出结果如下：
+
+```java
+4.3
+-3.7
+1.2
+0.075
+```
+如果使用BigDecimal类型的数据进行除法运算的时候，得到的结果是一个无限循环小数，那么就会报错：ArithmeticException。 如下代码所示：
+
+```java
+public class BigDecimalDemo02 {
+
+    public static void main(String[] args) {
+
+        // 创建两个BigDecimal对象
+        BigDecimal b1 = new BigDecimal("1") ;
+        BigDecimal b2 = new BigDecimal("3") ;
+
+        // 调用方法进行b1和b2的除法运算，并且将计算结果在控制台进行输出
+        System.out.println(b1.divide(b2));
+
+    }
+
+}
+```
+
+运行程序进行测试，控制台输出结果如下所示：
+
+```java
+Exception in thread "main" java.lang.ArithmeticException: Non-terminating decimal expansion; no exact representable decimal result.
+	at java.base/java.math.BigDecimal.divide(BigDecimal.java:1716)
+	at com.itheima.api.bigdecimal.demo02.BigDecimalDemo02.main(BigDecimalDemo02.java:14)
+```
+
+针对这个问题怎么解决，此时我们就需要使用到BigDecimal类中另外一个divide方法，如下所示：
+
+```java
+BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)
+```
+
+上述divide方法参数说明：
+
+```
+divisor:			除数对应的BigDecimal对象；
+scale:				精确的位数；
+roundingMode:		取舍模式；
+取舍模式被封装到了RoundingMode这个枚举类中，在这个枚举类中定义了很多种取舍方式。最常见的取舍方式有如下几个：
+UP(直接进1) ， FLOOR(直接删除) ， HALF_UP(4舍五入),我们可以通过如下格式直接访问这些取舍模式：枚举类名.变量名
+```
+
+接下来我们就来演示一下这些取舍模式，代码如下所示：
+
+```java
+public class BigDecimalDemo02 {
+
+    public static void main(String[] args) {
+
+        // 调用方法
+        method_03() ;
+
+    }
+
+    // 演示取舍模式HALF_UP
+    public static void method_03() {
+
+        // 创建两个BigDecimal对象
+        BigDecimal b1 = new BigDecimal("0.3") ;
+        BigDecimal b2 = new BigDecimal("4") ;
+
+        // 调用方法进行b1和b2的除法运算，并且将计算结果在控制台进行输出
+        System.out.println(b1.divide(b2 , 2 , RoundingMode.HALF_UP));
+
+    }
+
+    // 演示取舍模式FLOOR
+    public static void method_02() {
+
+        // 创建两个BigDecimal对象
+        BigDecimal b1 = new BigDecimal("1") ;
+        BigDecimal b2 = new BigDecimal("3") ;
+
+        // 调用方法进行b1和b2的除法运算，并且将计算结果在控制台进行输出
+        System.out.println(b1.divide(b2 , 2 , RoundingMode.FLOOR));
+
+    }
+
+    // 演示取舍模式UP
+    public static void method_01() {
+
+        // 创建两个BigDecimal对象
+        BigDecimal b1 = new BigDecimal("1") ;
+        BigDecimal b2 = new BigDecimal("3") ;
+
+        // 调用方法进行b1和b2的除法运算，并且将计算结果在控制台进行输出
+        System.out.println(b1.divide(b2 , 2 , RoundingMode.UP));
+
+    }
+
+}
+```
+小结:后期在进行两个数的除法运算的时候，我们常常使用的是可以设置取舍模式的divide方法.
