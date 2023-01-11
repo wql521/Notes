@@ -20,20 +20,6 @@
             }
           }
         ]
-      },
-      {
-        "id": "d166d2ac697a2151",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "f28b672163a991b0",
-            "type": "leaf",
-            "state": {
-              "type": "markdown-table-editor-view",
-              "state": {}
-            }
-          }
-        ]
       }
     ],
     "direction": "vertical"
@@ -152,8 +138,7 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "horizontal",
@@ -170,7 +155,7 @@
       "markdown-table-editor:Open Markdown Table Editor": false
     }
   },
-  "active": "f28b672163a991b0",
+  "active": "45b377341ad15dd9",
   "lastOpenFiles": [
     "Java/常用API.md",
     "Java/java.md",

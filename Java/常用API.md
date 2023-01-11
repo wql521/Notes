@@ -52,3 +52,20 @@ shutdown:关机
 ### Object
 Object是java中的顶级父类,所有的类都直接或间接的继承与Object类
 Object类中的方法可以被所有子类访问,所以我们要学习Object类和其中的方法
+| 方法名               | 说明   |
+|:------------------|:-----|
+| `public Object()` | 空参构造 |  
+顶级父类只有无参构造
+#### 常用方法
+| 方法名                                 | 说明           |
+|:------------------------------------|:-------------|
+| `public String toString()`          | 返回对象的字符串表示形式 |
+| `public boolean equals(Object obj)` | 比较两个对象是否相等   |
+| `public Object clone(int a)`        | 对象克隆         |  
+
+toString方法:
+如果打印一个对象,想要看到属性值的话,那么就**重写toString方法**
+在重写方法的时候,属性值进行拼接.
+equals方法:
+如果没有重写equals方法,默认使用Object中的方法进行比较,比较的是地址值是否相等
+如果重写equals方法,重写之后比较对象内部的属性值
