@@ -28,3 +28,17 @@ System是一个工具类,提供了一些与系统相关的方法
 终止虚拟机:
 0:表示当前虚拟机是正常停止
 非0:表示当前虚拟机异常停止
+拷贝数组:
+1. 如果数据源数组和目的地数组都是基本数据类型,那么两者的类型必须保持一致,否则会报错
+2. 在拷贝的时候需要考虑数组的长度,如果超出范围会报错
+3. 如果数据源数组和目的地数组都是引用数据类型,那么子类类型可以赋值给父类类型(拷贝的是地址)
+### Runtime
+| 方法名                                   | 说明                       |
+|:--------------------------------------|:-------------------------|
+| `public static Runtime getRuntime()`  | 当前系统的运行环境对象              |
+| `public void exit(int status)`        | 停止虚拟机                    |
+| `public int availableProcessors()`    | 获取CPU的线程数                |
+| `public long maxMemory()`             | JVM能从系统中获取总内存大小(单位byte)  |
+| `public long totalMemory()`           | JVM已经从系统中获取总内存大小(单位byte) |
+| `public long freeMemory()`            | JVM剩余内存大小(单位byte)        |
+| `public Process exec(String command)` | 运行cmd命令                  |  
