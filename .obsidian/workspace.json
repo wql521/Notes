@@ -18,17 +18,22 @@
                 "source": false
               }
             }
-          },
+          }
+        ]
+      },
+      {
+        "id": "ff9b6e12f2ddabc4",
+        "type": "tabs",
+        "children": [
           {
-            "id": "7ca43caa14ff7a9a",
+            "id": "8d06b38fee88050a",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "markdown-table-editor-view",
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -57,7 +62,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "重写",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -74,7 +79,8 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
@@ -95,6 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Java/常用API.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,6 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Java/常用API.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -132,7 +140,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Java/常用API.md"
+              }
             }
           },
           {
@@ -161,10 +171,10 @@
       "markdown-table-editor:Open Markdown Table Editor": false
     }
   },
-  "active": "7ca43caa14ff7a9a",
+  "active": "8d06b38fee88050a",
   "lastOpenFiles": [
-    "Java/常用API.md",
     "Java/java.md",
+    "Java/常用API.md",
     "未命名.canvas",
     "2023-01-10.md",
     "Java/拼图游戏.md",
